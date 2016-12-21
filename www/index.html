@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">o
+  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/jquery/jquery-3.1.1.min.js"></script>
+  <script src="lib/bootstrap/bootstrap.min.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+  <script src="lib/onsenui/js/angular-onsenui.min.js"></script>
+  <script src="lib/global.js"></script>
+  <script src="scripts/angular/taskController/taskController.js"></script>
+  <script src="scripts/angular/userController/userController.js"></script>
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <ons-navigator animation="slide" var="app.navi">
+      <ons-page>
+        
+        <ons-toolbar>
+          <div class="center">Welcome to DBG</div>
+        </ons-toolbar>
+    
+        <p style="text-align: center; margin-top: 30px;">
+          <ons-button modifier="light" ng-click="app.navi.pushPage('register.html');">Register</ons-button>
+        </p>
+        <p style="text-align: center; margin-top: 30px;">
+          <ons-button modifier="light" ng-click="app.navi.pushPage('login.html');">Login</ons-button>
+        </p>
+      </ons-page>
+    </ons-navigator>
+    
+    <!-- Register template -->
+  <ons-template id="register.html">
+    <ons-page ng-controller="TaskController as taskManager">
+    
+        <ons-toolbar>
+          <div class="left">
+            <ons-back-button>Back</ons-back-button>
+          </div>
+          <div class="center">Sign up</div>
+        </ons-toolbar>
+    
+        <div style="text-align: center; margin-top: 30px;">
+            <p>
+              <ons-input id="name" ng-model="taskManager.userName" modifier="underbar" placeholder="Name" float></ons-input>
+            </p>
+            <p>
+              <ons-input id="email" ng-model="taskManager.userEmail" modifier="underbar" placeholder="Email" float></ons-input>
+            </p>
+            <p>
+              <ons-input id="password" ng-model="taskManager.userPassword" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+            </p>
+            <p style="margin-top: 30px;">
+              <ons-button ng-click="taskManager.registerUser()">Register</ons-button>
+            </p>
+        </div>
+    </ons-page>
+    </ons-template>
+    <!-- Login template -->
+    <ons-template id="login.html">
+    <ons-page ng-controller="TaskController as taskManager">
+        <ons-toolbar>
+          <div class="left">
+            <ons-back-button>Back</ons-back-button>
+          </div>
+          <div class="center">Login</div>
+        </ons-toolbar>
+    
+        <div style="text-align: center; margin-top: 30px;">
+            <p>
+              <ons-input id="email" modifier="underbar" placeholder="Email" float></ons-input>
+            </p>
+            <p>
+              <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+            </p>
+            <p style="margin-top: 30px;">
+              <ons-button ng-click="taskManager.loginUser()">Login</ons-button>
+            </p>
+        </div>
+    </ons-page>
+    </ons-template>
+    
+    <ons-template id="main.html">
+    <ons-page ng-controller="TaskController as taskManager">
+     <div class="container">
+      <div class="jumbotron">
+        <h1>Wall</h1>      
+        <p>Active tasks/habits.</p>
+      </div>
+      <div>
+      <h3>Tasks:</h3>
+      <div ng-show="taskManager.userTasks.length === 0">
+        <p>
+            No tasks has been added! You can add task using button.
+        </p>
+      </div>
+     </div>
+     <ons-list>
+      <ons-list-item tappable ng-repeat="t in taskManager.userTasks track by $index" ng-click="taskManager.removeTask($index)">
+      <div class="center">
+          <div class="title">
+            {{ t }}
+          </div>
+      </div>
+      </ons-list-item>
+     </ons-list>
+     <div id="add-task">
+        <ons-button ng-click="taskManager.showNewTask()" modifier="cta">New Task</ons-button> 
+     </div>
+     <div id="new-task" hidden>
+     <ons-input id="new-task-input" modifier="underbar" ng-model="taskManager.taskName" placeholder="Your task" float></ons-input><br/>
+     <ons-button id="save-task" ng-click="taskManager.addNewTask()" modifier="cta">Save</ons-button> 
+     </div>
+     <ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>
+  </ons-page>
+  </ons-template>
+  
+</body>
+</html>
