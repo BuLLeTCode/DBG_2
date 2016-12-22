@@ -33,8 +33,14 @@
         <p style="text-align: center; margin-top: 30px;">
           <ons-button modifier="light" ng-click="app.navi.pushPage('login.html');">Login</ons-button>
         </p>
+        <p style="text-align: center; margin-top: 30px;">
+          <ons-button modifier="light" ng-click="app.navi.pushPage('main.html');">Main</ons-button>
+        </p>
       </ons-page>
     </ons-navigator>
+    
+        <ons-sliding-menu var="app.menu" main-page="main.html" max-slide-distance="200px" type="reveal" side="left">
+    </ons-sliding-menu>
     
     <!-- Register template -->
   <ons-template id="register.html">
@@ -89,6 +95,12 @@
     
     <ons-template id="main.html">
     <ons-page ng-controller="TaskController as taskManager">
+    <p>
+     <ons-toolbar-button onclick="app.menu.toggleMenu()">
+          <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
+        </ons-toolbar-button>
+        <ons-button id="new-habit" ng-click="app.navi.pushPage('habit.html');" modifier="cta">+</ons-button> 
+   </p>
      <div class="container">
       <div class="jumbotron">
         <h1>Wall</h1>      
@@ -103,7 +115,7 @@
       </div>
      </div>
      <ons-list>
-      <ons-list-item tappable ng-repeat="t in taskManager.userTasks track by $index" ng-click="taskManager.removeTask($index)">
+      <ons-list-item tappable ng-show="taskManager.userTasks.length !== 0" ng-repeat="t in taskManager.userTasks track by $index" ng-click="taskManager.removeTask($index)">
       <div class="center">
           <div class="title">
             {{ t }}
@@ -118,9 +130,65 @@
      <ons-input id="new-task-input" modifier="underbar" ng-model="taskManager.taskName" placeholder="Your task" float></ons-input><br/>
      <ons-button id="save-task" ng-click="taskManager.addNewTask()" modifier="cta">Save</ons-button> 
      </div>
-     <ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>
+     <ons-bottom-toolbar>
+        <ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>
+     </ons-bottom-toolbar>
   </ons-page>
   </ons-template>
   
+  <ons-template id="habit.html">
+    <ons-page ng-controller="TaskController as taskManager">
+    <ons-toolbar>
+          <div class="left">
+            <ons-back-button>Back</ons-back-button>
+          </div>
+          <div class="center">Add Habit</div>
+        </ons-toolbar>
+     <div class="container">
+      <div style="text-align: center; margin-top: 30px;">
+        <p>
+            <ons-input modifier="underbar" placeholder="Search or add a new habit" ng-model="taskManager.userSearch" ng-minlength="2" float></ons-input>
+        </p>
+      </div>
+     <div>
+       <div ng-repeat="habit in taskManager.userHabits | filter:taskManager.userSearch as filtered">
+         <div>
+           {{habit}}
+         </div>
+       </div>
+       <p style="text-align: center;">Showing {{filtered.length}} Habits</p>
+       <div ng-if="filtered.length === 0">
+           <ons-button id="add-task" ng-click="taskManager.showHabitInput()" modifier="cta">Add</ons-button>
+       </div>
+       <div id="new-habit-input" hidden>
+         <ons-input modifier="underbar" ng-model="taskManager.habitName" placeholder="Habit name" float></ons-input><br/>
+         <p>-> Hopefully icon in future</p>
+         <ons-input type="number" modifier="underbar" ng-model="taskManager.habitPushDelay" placeholder="Habit push delay" float></ons-input><br/>
+         <ons-button ng-click="taskManager.addHabit()" modifier="cta">Save</ons-button> 
+       </div>
+       <div class="jumbotron">
+       <ons-list>
+          <ons-list-item tappable ng-repeat="h in taskManager.userHabits track by $index">
+          <div class="center">
+              <div class="title">
+                {{ h.name }} <span style="color: green;">{{h.delay}}</span>
+              </div>
+          </div>
+          </ons-list-item>
+     </ons-list>
+       </div>
+     </div>
+     <ons-bottom-toolbar>
+        <ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>
+     </ons-bottom-toolbar>
+  </ons-page>
+  </ons-template>
+  
+<ons-template id="menu.html">
+  <ons-page>
+  Sexy
+    <!-- menu page's contents -->
+  </ons-page>
+</ons-template>
 </body>
 </html>

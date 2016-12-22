@@ -2,3 +2,9 @@
 #new-task, #add-task{
     margin-top: 15px;   
 }
+
+#new-habit{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}

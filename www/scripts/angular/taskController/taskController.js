@@ -12,6 +12,11 @@ function TaskController() {
     vm.userName = undefined;
     vm.userEmail = undefined;
     vm.userPassword = undefined;
+    //Habit page
+    vm.userSearch = undefined;
+    vm.userHabits = [];
+    vm.habitName = undefined;
+    vm.habitPushDelay = undefined;
     
     //Functions
     vm.showNewTask = function(){
@@ -79,5 +84,20 @@ function TaskController() {
         {
            alert("Err#" + err.code +": " + err.message);
         });  
+    };
+    
+    vm.showHabitInput = function(){
+        $("#new-habit-input").toggle();
+    };
+    
+    vm.addHabit = function(){
+        var newHabit = {
+            name: vm.habitName,
+            delay: vm.habitPushDelay
+        };
+                
+        vm.userHabits.push(newHabit);
+//        vm.habitName = undefined;
+//        vm.habitPushDelay = undefined;
     };
 }
