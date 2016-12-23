@@ -12,7 +12,6 @@
   <script src="lib/onsenui/js/angular-onsenui.min.js"></script>
   <script src="lib/global.js"></script>
   <script src="scripts/angular/taskController/taskController.js"></script>
-  <script src="scripts/angular/userController/userController.js"></script>
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
@@ -81,10 +80,10 @@
     
         <div style="text-align: center; margin-top: 30px;">
             <p>
-              <ons-input id="email" modifier="underbar" placeholder="Email" float></ons-input>
+              <ons-input id="email" modifier="underbar" ng-model="taskManager.userEmail" placeholder="Email" float></ons-input>
             </p>
             <p>
-              <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+              <ons-input id="password" modifier="underbar" ng-model="taskManager.userPassword" type="password" placeholder="Password" float></ons-input>
             </p>
             <p style="margin-top: 30px;">
               <ons-button ng-click="taskManager.loginUser()">Login</ons-button>
@@ -152,9 +151,9 @@
       </div>
      <div>
        <div ng-repeat="habit in taskManager.userHabits | filter:taskManager.userSearch as filtered">
-         <div>
+         <!--<div>
            {{habit}}
-         </div>
+         </div>-->
        </div>
        <p style="text-align: center;">Showing {{filtered.length}} Habits</p>
        <div ng-if="filtered.length === 0">

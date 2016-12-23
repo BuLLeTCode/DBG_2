@@ -18,6 +18,9 @@ function TaskController() {
     vm.habitName = undefined;
     vm.habitPushDelay = undefined;
     
+    //Collection objects
+    var Habits = monaca.cloud.Collection("Habits");
+    
     //Functions
     vm.showNewTask = function(){
         console.log("new task");
@@ -48,6 +51,7 @@ function TaskController() {
         .done(function(result)
         {
            alert("Welcome, " + result.user._username);
+           app.navi.pushPage('index.html');
         }
         )
         .fail(function(err)
@@ -58,9 +62,11 @@ function TaskController() {
     
     //loginUser
     vm.loginUser = function(){
+//        alert("Login: " + vm.userEmail + " Pass: " + vm.userPassword);
         monaca.cloud.User.login(vm.userEmail, vm.userPassword)
         .done(function(result){
-           alert("Hello again, " + result.user._username);
+//           alert("Hello again, " + result.user._username);
+           console.log("Hello again, " + result.user._username);
            if(monaca.cloud.User.isAuthenticated())
            {
                app.navi.pushPage('main.html');
@@ -68,7 +74,8 @@ function TaskController() {
         })
         .fail(function(err)
         {
-           alert("Err#" + err.code +": " + err.message);
+            console.log("Err#" + err.code +": " + err.message);
+//           alert("Err#" + err.code +": " + err.message);
         });
     }; 
     
@@ -78,7 +85,7 @@ function TaskController() {
         .done(function(result)
         {
            alert("You are successfully logged out");
-           app.navi.pushPage('index.html');
+           app.navi.pushPage('main.html');
         })
         .fail(function(err)
         {
@@ -87,6 +94,17 @@ function TaskController() {
     };
     
     vm.showHabitInput = function(){
+        Habits.findMine("", "", {propertyNames: ["HabitName", "HabitDelay"], limit: 5})
+        .done(function(result)
+        {
+           console.log('Total items found: ' + result.totalItems);
+           console.log('The body of the first item: ' + result.items[0].body);
+        })
+        .fail(function(err)
+        {
+           console.log("Err#" + err.code +": " + err.message);
+        });
+        
         $("#new-habit-input").toggle();
     };
     
@@ -97,7 +115,15 @@ function TaskController() {
         };
                 
         vm.userHabits.push(newHabit);
-//        vm.habitName = undefined;
-//        vm.habitPushDelay = undefined;
+        
+        Habits.insert({HabitName: vm.habitName, HabitDelay: vm.habitPushDelay})
+        .done(function(result)
+        {
+           alert("Inserted!");
+        })
+        .fail(function(err)
+        {
+           alert("Err#" + err.code +": " + err.message);
+        });
     };
 }
