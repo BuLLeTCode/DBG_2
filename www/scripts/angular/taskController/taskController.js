@@ -5,9 +5,6 @@ function TaskController() {
     //Init
     var vm = this;
     
-    //TaskManagement
-    vm.taskName = undefined;
-    vm.userTasks = [];
     //UserManagement
     vm.userName = undefined;
     vm.userEmail = undefined;
@@ -22,29 +19,7 @@ function TaskController() {
     var Habits = monaca.cloud.Collection("Habits");
     
     //Functions
-    vm.showNewTask = function(){
-        console.log("new task");
-        $("#new-task").toggle();
-    };
     
-    vm.addNewTask = function(){
-        console.log("new task");
-        vm.userTasks.push(vm.taskName);
-        vm.taskName = undefined;
-        $("#new-task-input").val("");
-        console.log("userTasks: " + vm.userTasks);
-    };
-    
-    vm.removeTask = function(target){
-        console.log("target: " + target);
-        vm.userTasks.splice(target, 1);
-    }
-    
-    vm.reset = function() {
-        vm.taskName = undefined;
-    };    
-    
-    //functions
     //registerFunction
     vm.registerUser = function(){
         monaca.cloud.User.register(vm.userEmail, vm.userPassword, {Name : vm.userName})
