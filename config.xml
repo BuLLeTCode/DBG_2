@@ -90,9 +90,6 @@
   <platform name="chrome">
     <icon src="/platforms/chrome/icon.png" width="128" height="128"/>
   </platform>
-  <preference name="monaca:MonacaBackendUrl" value="https://cloud.monaca.mobi/json-rpc/"/>
-  <preference name="monaca:MonacaBackendId" value="58582577803451916d73ba71"/>
-  <preference name="monaca:MonacaBackendApiKey" value="e17f26b139c0f70dcdf1d7ed664e463c5b0179ceade9bd9676f535a0a93d9e9c"/>
   <preference name="WindowsStorePublisherName" value="My Name"/>
   <preference name="WindowsStoreIdentityName" value="7049ec7c-b71a-aff5-e94b-5978908e1096"/>
   <preference name="ios-XCBuildConfiguration-TARGETED_DEVICE_FAMILY" value="1,2"/>
@@ -103,4 +100,8 @@
   <preference name="Orientation" value="default"/>
   <preference name="SplashScreenDelay" value="1000"/>
   <preference name="Fullscreen" value="false"/>
+  <preference name="monaca:MonacaBackendUrl" value="https://cloud.monaca.mobi/json-rpc/"/>
+  <preference name="monaca:MonacaBackendId" value="585ea599ff2af2d7550921dd"/>
+  <preference name="monaca:MonacaBackendApiKey" value="4def638446de326c498cfda152b5fa2112909126f8e6a5421f89772c86917df6"/>
+  <preference name="monaca:SenderId" value="737646664155"/>
 </widget>

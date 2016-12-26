@@ -106,6 +106,7 @@
         <li><a href="#" ng-click="app.navi.pushPage('main.html');">Wall</a></li>
         <li><a href="#" ng-click="app.navi.pushPage('history.html');">History</a></li>
       </ul>
+      <ons-button id="push-notification" ng-click="taskManager.sendPushNotification()" modifier="cta">Push Notification</ons-button>
      <ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>
   </ons-page>
   </ons-template>
@@ -125,54 +126,6 @@
         <li><a href="#" ng-click="app.navi.pushPage('history.html');">History</a></li>
       </ul>
      <ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>
-  </ons-page>
-  </ons-template>
-  
-  <ons-template id="habit.html">
-    <ons-page ng-controller="TaskController as taskManager">
-    <ons-toolbar>
-          <div class="left">
-            <ons-back-button>Back</ons-back-button>
-          </div>
-          <div class="center">Add Habit</div>
-        </ons-toolbar>
-     <div class="container">
-      <div style="text-align: center; margin-top: 30px;">
-        <p>
-            <ons-input modifier="underbar" placeholder="Search or add a new habit" ng-model="taskManager.userSearch" ng-minlength="2" float></ons-input>
-        </p>
-      </div>
-     <div>
-       <div ng-repeat="habit in taskManager.userHabits | filter:taskManager.userSearch as filtered">
-         <!--<div>
-           {{habit}}
-         </div>-->
-       </div>
-       <p style="text-align: center;">Showing {{filtered.length}} Habits</p>
-       <div ng-if="filtered.length === 0">
-           <ons-button id="add-task" ng-click="taskManager.showHabitInput()" modifier="cta">Add</ons-button>
-       </div>
-       <div id="new-habit-input" hidden>
-         <ons-input modifier="underbar" ng-model="taskManager.habitName" placeholder="Habit name" float></ons-input><br/>
-         <p>-> Hopefully icon in future</p>
-         <ons-input type="number" modifier="underbar" ng-model="taskManager.habitPushDelay" placeholder="Habit push delay" float></ons-input><br/>
-         <ons-button ng-click="taskManager.addHabit()" modifier="cta">Save</ons-button> 
-       </div>
-       <div class="jumbotron">
-       <ons-list>
-          <ons-list-item tappable ng-repeat="h in taskManager.userHabits track by $index">
-          <div class="center">
-              <div class="title">
-                {{ h.name }} <span style="color: green;">{{h.delay}}</span>
-              </div>
-          </div>
-          </ons-list-item>
-     </ons-list>
-       </div>
-     </div>
-     <ons-bottom-toolbar>
-        <ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>
-     </ons-bottom-toolbar>
   </ons-page>
   </ons-template>
   
