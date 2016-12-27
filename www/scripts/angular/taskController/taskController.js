@@ -22,6 +22,7 @@ function TaskController() {
     
     //registerFunction
     vm.registerUser = function(){
+        alert("submit");
         monaca.cloud.User.register(vm.userEmail, vm.userPassword, {Name : vm.userName})
         .done(function(result)
         {
@@ -72,21 +73,27 @@ function TaskController() {
         .done(function(result)
         {
            alert('Total items found: ' + result.totalItems);
-           alert('The body of the first item: ' + result.items[0].HabitName);
+           alert('The name of the first item: ' + result.items[0].HabitName + " delay: " + result.items[0].HabitDelay);
            
-           for(var i = 0; i < items.lenght; i++)
+           for(var i = 0; i < result.items.lenght; i++)
            {
                 var newHabit = {
                     name: result.items[i].HabitName,
                     delay: result.items[i].HabitDelay
                 };
-               
-               vm.userHabits[i] = newHabit;
+                alert("New habit added");
+//               vm.userHabits[i] = newHabit;
+                vm.userHabits.push(newHabit);
            }
+           
+           $("#fountainG").hide();
+           $("#habit_container").show();
         })
         .fail(function(err)
         {
            alert("Err#" + err.code +": " + err.message);
+           $("#fountainG").hide();
+           $("#habit_container").show();
         });  
     };
     
@@ -116,6 +123,20 @@ function TaskController() {
     //Push notification
     vm.sendPushNotification = function(){
         alert("Sending push notification");
+        
+        window.wakeuptimer.wakeup( successCallback,  
+       errorCallback, 
+       // a list of alarms to set
+       {
+            alarms : [{
+                type : 'onetime',
+                time : { hour : 19, minute : 52 },
+                extra : { message : 'json containing app-specific information to be posted when alarm triggers' }, 
+                message : 'Alarm has expired!'
+           }] 
+       }
+    );
+
 //        monaca.cloud.Push();
     };
 }

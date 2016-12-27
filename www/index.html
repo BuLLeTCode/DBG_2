@@ -54,10 +54,10 @@
     
         <div style="text-align: center; margin-top: 30px;">
             <p>
-              <ons-input id="name" ng-model="taskManager.userName" modifier="underbar" placeholder="Name" float></ons-input>
+              <ons-input id="name" ng-model="taskManager.userName"ng-trim="true" modifier="underbar" placeholder="Name" float></ons-input>
             </p>
             <p>
-              <ons-input id="email" ng-model="taskManager.userEmail" modifier="underbar" placeholder="Email" float></ons-input>
+              <ons-input id="email" ng-model="taskManager.userEmail" modifier="underbar" type="email" placeholder="Email" float></ons-input>
             </p>
             <p>
               <ons-input id="password" ng-model="taskManager.userPassword" modifier="underbar" type="password" placeholder="Password" float></ons-input>
@@ -80,7 +80,7 @@
     
         <div style="text-align: center; margin-top: 30px;">
             <p>
-              <ons-input id="email" modifier="underbar" ng-model="taskManager.userEmail" placeholder="Email" float></ons-input>
+              <ons-input id="email" modifier="underbar" ng-model="taskManager.userEmail" type="email" placeholder="Email" float></ons-input>
             </p>
             <p>
               <ons-input id="password" modifier="underbar" ng-model="taskManager.userPassword" type="password" placeholder="Password" float></ons-input>
@@ -131,7 +131,7 @@
   
 <ons-template id="menu.html">
   <ons-page>
-  Sexy
+    Test
     <!-- menu page's contents -->
   </ons-page>
 </ons-template>
