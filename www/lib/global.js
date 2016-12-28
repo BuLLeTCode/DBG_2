@@ -3,4 +3,5 @@
     monaca.cloud.Push.setHandler(function(data) {
       alert(data);
     });
+    
 })();

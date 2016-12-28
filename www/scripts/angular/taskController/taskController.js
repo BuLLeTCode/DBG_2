@@ -123,20 +123,8 @@ function TaskController() {
     //Push notification
     vm.sendPushNotification = function(){
         alert("Sending push notification");
-        
-        window.wakeuptimer.wakeup( successCallback,  
-       errorCallback, 
-       // a list of alarms to set
-       {
-            alarms : [{
-                type : 'onetime',
-                time : { hour : 19, minute : 52 },
-                extra : { message : 'json containing app-specific information to be posted when alarm triggers' }, 
-                message : 'Alarm has expired!'
-           }] 
-       }
-    );
 
-//        monaca.cloud.Push();
+        monaca.cloud.Push.send("Q2o+wivy6ozzRZ0Q");
+        console.log(monaca.cloud.Push);
     };
 }

@@ -12,7 +12,6 @@
         "cordova-plugin-splashscreen@3.2.2",
         "cordova-custom-config@2.0.3",
         "cordova-plugin-dialogs@1.2.1",
-        "https:\/\/www.npmjs.com\/package\/cordova-plugin-background-app",
         "ncmb-push-monaca-plugin@2.0.2"
     ]
 }
