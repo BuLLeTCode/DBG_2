@@ -3,7 +3,9 @@ ons.bootstrap()
       
 function TaskController() {
     //Init
+    
     var vm = this;
+
     
     //UserManagement
     vm.userName = undefined;
@@ -43,7 +45,7 @@ function TaskController() {
         .done(function(result){
            alert("Hello again, " + result.user.Name);
            if(monaca.cloud.User.isAuthenticated())
-           {
+           {   
                app.navi.pushPage('main.html');
            }
         })
