@@ -1,27 +1,35 @@
-ons.bootstrap().controller('LanguageController', LanguageController);
+module.controller('LanguageController', LanguageController);
       
-function LanguageController() {
+function LanguageController($translate) {
     //init
     var vm = this;
     
-    var possibleLangs = ["en", "lv"];
-    var lang = undefined;
+    vm.possibleLangs = ["gb", "lv"];
+    vm.lang = undefined;
     
-    var imagePath = "res/phoca_flags/";
-    var imageFormat = ".png";
+    vm.imagePath = "res/phoca_flags/";
+    vm.imageFormat = ".png";
+    
+    
+    vm.setDefaultLanguage = function(){
+        lang = "en";
+        Cookies.set("language", "en");
+        $translate.use(lang);
+    };
     
     vm.getActiveLanguage = function(){
         lang = Cookies.get("language");   
-        alert("Active language: " + lang);
         //First time case
         if(lang === undefined){
-            lang = "en";
-            Cookies.set("language", "en");
-        }   
+            vm.setDefaultLanguage();
+        } 
+        return lang;
     };
     
     vm.changeActiveLanguage = function(language){
+        alert("Language has been changed to: " + language);
         lang = language;
         Cookies.set("language", language);
+        $translate.use(lang);
     };
 };

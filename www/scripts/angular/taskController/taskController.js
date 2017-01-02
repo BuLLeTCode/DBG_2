@@ -1,6 +1,4 @@
-var module = ons.bootstrap('demo', []);
 module.controller('TaskController', TaskController);
-module.controller('LanguageController', LanguageController);
       
 function TaskController() {
     //Init
@@ -16,13 +14,6 @@ function TaskController() {
     vm.userHabits = [];
     vm.habitName = undefined;
     vm.habitPushDelay = undefined;
-    
-    //Language
-    var possibleLangs = ["en", "lv"];
-    var lang = undefined;
-    
-    var imagePath = "res/phoca_flags/";
-    var imageFormat = ".png";
     
     //Collection objects
     var Habits = monaca.cloud.Collection("Habits");
@@ -152,10 +143,4 @@ function TaskController() {
         lang = language;
         Cookies.set("language", language);
     };
-}
-
-function LanguageController(){
-    var vm = this;
-    
-    var lang = "test";
 }

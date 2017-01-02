@@ -100,8 +100,8 @@
   <preference name="Orientation" value="default"/>
   <preference name="SplashScreenDelay" value="1000"/>
   <preference name="Fullscreen" value="false"/>
+  <preference name="monaca:SenderId" value="737646664155"/>
   <preference name="monaca:MonacaBackendUrl" value="https://cloud.monaca.mobi/json-rpc/"/>
   <preference name="monaca:MonacaBackendId" value="585ea599ff2af2d7550921dd"/>
   <preference name="monaca:MonacaBackendApiKey" value="4def638446de326c498cfda152b5fa2112909126f8e6a5421f89772c86917df6"/>
-  <preference name="monaca:SenderId" value="737646664155"/>
 </widget>

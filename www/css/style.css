@@ -9,6 +9,12 @@
     top: 5px;
 }
 
+#lang-switch{
+    padding-top: 15px;
+    padding-left: 10px;    
+    list-style-type: none;
+}
+
 /*loading indentificator*/
 #fountainG{
     position:relative;
