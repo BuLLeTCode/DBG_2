@@ -116,6 +116,9 @@
       </ul>
       <ons-button id="push-notification" ng-click="taskManager.sendPushNotification()" modifier="cta">Push Notification</ons-button>
      <ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>
+     <ul id="lang-switch" class="list-inline" ng-controller="LanguageController as langManager" ng-init="langManager.getActiveLanguage()">
+        <li ng-repeat="language in langManager.possibleLangs track by $index"><a href="#" ng-click="langManager.changeActiveLanguage(language)"><img ng-src="{{langManager.imagePath}}{{language}}{{langManager.imageFormat}}"/></a></li>
+    </ul>
   </ons-page>
   </ons-template>
   
