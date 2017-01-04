@@ -15,6 +15,7 @@ function LanguageController($translate) {
         lang = "en";
         Cookies.set("language", "en");
         $translate.use(lang);
+        vm.changeLanguageProperty(lang);
     };
     
     vm.getActiveLanguage = function(){
@@ -31,5 +32,12 @@ function LanguageController($translate) {
         lang = language;
         Cookies.set("language", language);
         $translate.use(lang);
+        vm.changeLanguageProperty(language);
     };
+    
+    vm.changeLanguageProperty = function(lang){
+        if (monaca.cloud.User.isAuthenticated()) {
+          monaca.cloud.User.saveProperty("Language", lang);
+        }
+    }
 };

@@ -122,25 +122,6 @@ function TaskController() {
     
     //Push notification
     vm.sendPushNotification = function(){
-        alert("Sending push notification");
-
-        monaca.cloud.Push.send("Q2o+wivy6ozzRZ0Q");
-        console.log(monaca.cloud.Push);
-    };
-    
-    //Language
-    vm.getActiveLanguage = function(){
-        lang = Cookies.get("language");   
-        alert("Active language: " + lang);
-        //First time case
-        if(lang === undefined){
-            lang = "en";
-            Cookies.set("language", "en");
-        }   
-    };
-    
-    vm.changeActiveLanguage = function(language){
-        lang = language;
-        Cookies.set("language", language);
+        //TODO: Add server side function... $http
     };
 }
