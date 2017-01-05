@@ -1,6 +1,8 @@
 module.controller('TaskController', TaskController);
       
-function TaskController() {
+TaskController.$inject = ['$http'];
+      
+function TaskController($http) {
     //Init
     
     var vm = this;
@@ -123,5 +125,6 @@ function TaskController() {
     //Push notification
     vm.sendPushNotification = function(){
         //TODO: Add server side function... $http
+        //$http.post('http://ipppp/dbg/ParameterTest.php?name=test');
     };
 }
