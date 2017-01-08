@@ -35,7 +35,7 @@ function UserManagmentController(oneSignalService) {
     vm.createGuestUser = function(){
         var randIndex = Math.floor(Math.random() * (maxAccounts - minAccounts + 1)) + minAccounts;
         var guestUserName = "Guest_" + randIndex;
-        var guestPassword = randIndex;
+        var guestPassword = "Password" + randIndex;
         alert("Generated userName: " + guestUserName);
         monaca.cloud.User.validate(guestUserName)
         .done(function(result)
@@ -47,7 +47,7 @@ function UserManagmentController(oneSignalService) {
 //               alert("Welcome, " + result.user._username);
                 monaca.cloud.User.login(guestUserName, guestPassword)
                 .done(function(result){
-                   alert("Hello again, " + result.user.Name);
+                   alert("Hello!");
                    if(monaca.cloud.User.isAuthenticated())
                    {   
                        app.navi.pushPage('main.html');
