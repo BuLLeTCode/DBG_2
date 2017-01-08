@@ -6,13 +6,13 @@ module.config(function ($translateProvider) {
     WELCOME: 'Welcome to DBG',
     REGISTER: 'Register',
     LOGIN: 'Login',
-    MAIN: 'Main'
+    GUEST: 'Guest'
   });
   $translateProvider.translations('lv', {
     WELCOME: 'Esi sveicināts DBG',
     REGISTER: 'Reģistrēties',
     LOGIN: 'Ielogoties',
-    MAIN: 'Galvenā lapa'
+    GUEST: 'Viesis'
   });
   //Set most friendly language for users
   $translateProvider.preferredLanguage('gb');

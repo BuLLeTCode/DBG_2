@@ -1,8 +1,8 @@
 module.controller('TaskController', TaskController);
       
-TaskController.$inject = ['$http'];
+TaskController.$inject = ['$http', 'oneSignalService'];
       
-function TaskController($http) {
+function TaskController($http, oneSignalService) {
     //Init
     
     var vm = this;
@@ -24,18 +24,23 @@ function TaskController($http) {
     
     //registerFunction
     vm.registerUser = function(){
-        alert("submit");
-        monaca.cloud.User.register(vm.userEmail, vm.userPassword, {Name : vm.userName})
-        .done(function(result)
-        {
-           alert("Welcome, " + result.user._username);
-           app.navi.pushPage('index.html');
+        
+        if(monaca.cloud.User.isAuthenticated()){
+            monaca.cloud.User.saveProperties({"Name":vm.userName});
+        }else{
+            monaca.cloud.User.register(vm.userEmail, vm.userPassword, {Name : vm.userName, OneSignalId : oneSignalService.userOneSignalId})
+            .done(function(result)
+            {
+               alert("Welcome, " + result.user._username);
+               app.navi.pushPage('index.html');
+            }
+            )
+            .fail(function(err)
+            {
+                alert("Err#" + err.code +": " + err.message);
+            });
         }
-        )
-        .fail(function(err)
-        {
-            alert("Err#" + err.code +": " + err.message);
-        });
+        
     };
     
     //loginUser
@@ -53,7 +58,7 @@ function TaskController($http) {
         {
            alert("Err#" + err.code +": " + err.message);
         });
-    }; 
+    };
     
     //logoutUser
     vm.logoutUser = function(){
