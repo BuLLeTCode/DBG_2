@@ -28,7 +28,8 @@ function UserManagmentController(oneSignalService) {
         })
         .fail(function(err)
         {
-           alert("Err#" + err.code +": " + err.message);
+//           alert("Err#" + err.code +": " + err.message);
+            vm.createGuestUser();
         });    
     };
     

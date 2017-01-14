@@ -46,6 +46,9 @@
         <p style="text-align: center; margin-top: 30px;">
           <ons-button modifier="light" ng-click="userManager.createGuestUser();" translate="GUEST"></ons-button>
         </p>
+        <p style="text-align: center; margin-top: 30px;">
+          <ons-button modifier="light" ng-click="app.navi.pushPage('main.html');">MAIN</ons-button>
+        </p>
         <div ng-controller="LanguageController as langManager" ng-init="langManager.getActiveLanguage()">
             <!-- add tooltip for changuage change? -->
             <ul id="lang-switch" class="list-inline">
@@ -54,23 +57,15 @@
         </div>
       </ons-page>
     </ons-navigator>
-    <!-- sliding menu solution using Jasny Bootstrap -->
     <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
       <a class="navmenu-brand" href="#">Menu</a>
       <ul class="nav navmenu-nav">
-        <li class="active"><a href="#" ng-click="app.navi.pushPage('main.html');">Wall</a></li>
-        <li><a href="#" ng-click="app.navi.pushPage('register.html');">Register</a></li>
+        <li class="active"><a href="#" ng-click="app.navi.pushPage('main.html', { animation : 'slide' });">Wall</a></li>
+        <li><a href="#" ng-click="app.navi.pushPage('login.html', { animation : 'slide' });">Login</a></li>
+        <li><a href="#" ng-click="app.navi.pushPage('forgot.html', { animation : 'slide' });">Forgot Password?</a></li>
+        <li><a href="#" ng-click="app.navi.pushPage('register.html', { animation : 'slide' });">Register</a></li>
       </ul>
     </nav>
-    <div class="navbar navbar-default navbar-fixed-top">
-      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"
-      id="slide-menu-button">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
 <ons-template id="page1.html">
   <ons-page>
     <ons-toolbar>
@@ -101,7 +96,6 @@
     <p style="text-align: center; color: #999; padding-top: 100px;">Page2 Contents</p>
   </ons-page>
 </ons-template>
-    
     <!-- Register template -->
   <ons-template id="register.html">
     <ons-page ng-controller="TaskController as taskManager">
@@ -152,8 +146,37 @@
         </div>
     </ons-page>
     </ons-template>
+    <!-- Forgot password template -->
+    <ons-template id="forgot.html">
+    <ons-page ng-controller="TaskController as taskManager">
+        <ons-toolbar>
+          <div class="left">
+            <ons-back-button>Back</ons-back-button>
+          </div>
+          <div class="center">Forgot Password</div>
+        </ons-toolbar>
+    
+        <div style="text-align: center; margin-top: 30px;">
+            <p>
+              <ons-input id="email" modifier="underbar" ng-model="taskManager.userEmail" type="email" placeholder="Email" float></ons-input>
+            </p>
+            <p style="margin-top: 30px;">
+              <ons-button ng-click="">Reset</ons-button>
+            </p>
+        </div>
+    </ons-page>
+    </ons-template>
     
     <ons-template id="main.html">
+    <!-- sliding menu solution using Jasny Bootstrap -->
+    <div id="slider-menu" class="navbar navbar-default navbar-fixed-top">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"
+      id="slide-menu-button">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
     <ons-page ng-controller="TaskController as taskManager">
     <p>
      <!--<ons-toolbar-button onclick="app.menu.toggleMenu()">
