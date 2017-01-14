@@ -1,8 +1,21 @@
-<ons-page>
-        
-    <ons-toolbar>
-        <div class="center">Page2</div>
-    </ons-toolbar>
-
-    <p>This is the Onsen Page Template.</p>
-</ons-page>
+<ons-page ng-controller="TaskController as taskManager">
+    <p>
+     <!-- sliding menu solution using Jasny Bootstrap -->
+    <div id="slider-menu" class="navbar navbar-default navbar-fixed-top">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"
+      id="slide-menu-button">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+   </p>
+     <div class="container">
+      <h1>Journey</h1> 
+      <ul class="list-inline">
+        <li><a href="#" ng-click="app.navi.pushPage('main.html');">Wall</a></li>
+        <li><a href="#" ng-click="app.navi.pushPage('history.html');">History</a></li>
+        <li><a href="#" ng-click="app.navi.pushPage('journey.html');">Journey</a></li>
+      </ul>
+     <!--<ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>-->
+  </ons-page>
