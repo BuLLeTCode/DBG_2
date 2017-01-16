@@ -1,0 +1,41 @@
+<ons-page>
+        
+    <ons-toolbar>
+        <div class="left">
+            <ons-icon
+              icon="ion-ios-arrow-thin-left"
+              size="30px"
+              fixed-width="false"
+              ng-click="">
+            </ons-icon>
+        </div>
+        <div class="center">NEW HABIT GROUP</div>
+        <div class="right">
+            <ons-icon
+              icon="ion-ios-checkmark-empty"
+              size="30px"
+              fixed-width="false"
+              ng-click="">
+            </ons-icon>
+        </div>
+    </ons-toolbar>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <p>
+            <label>GROUP NAME</label><br/>
+            <ons-input id="group_name" modifier="underbar" ng-model="" type="text" placeholder="Healthy eating" float></ons-input>
+        </p>
+        <p>
+            <label>GROUP COLOR</label><br/>
+            <!-- TODO: Replace with AngularJS color directive -->
+            <button
+                class="jscolor {valueElement:null,value:'66ccff'}"
+                style="border:2px solid black">
+                Pick a color
+            </button>
+        </p>
+        <p style="margin-top: 30px;">
+          <ons-button ng-click="">Reset</ons-button>
+        </p>
+    </div>
+</ons-page>

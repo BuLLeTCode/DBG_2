@@ -130,6 +130,6 @@ function TaskController($http, oneSignalService) {
     //Push notification
     vm.sendPushNotification = function(){
         //TODO: Add server side function... $http
-        //$http.post('http://ipppp/dbg/ParameterTest.php?name=test');
+        $http.post('http://46.101.80.183/dbg/CreateNotification.php');
     };
 }
