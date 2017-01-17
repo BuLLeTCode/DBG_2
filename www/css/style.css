@@ -241,3 +241,43 @@
 .container{
     padding-top: 23px;
 }
+
+
+/*Custom image classes */
+.day-checkbox {
+    /*background-image: url("css_res/DayPickerBackground.png");*/
+    background: url("css_res/DayPickerBackground.png");
+    background-size: 80px 60px;
+    background-repeat: no-repeat;
+}
+
+.day-checkbox button {
+    padding: 32px 16px;
+}
+
+/*Custom BOOTSTRAP*/
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}

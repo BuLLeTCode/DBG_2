@@ -1,4 +1,4 @@
-<ons-page>
+<ons-page ng-controller="HabitGroupController as habitGroupManager">
         
     <ons-toolbar>
         <div class="left">
@@ -15,7 +15,7 @@
               icon="ion-ios-checkmark-empty"
               size="30px"
               fixed-width="false"
-              ng-click="">
+              ng-click="habitGroupManager.CreateHabitGroup();">
             </ons-icon>
         </div>
     </ons-toolbar>
@@ -23,19 +23,50 @@
     <div style="text-align: center; margin-top: 30px;">
         <p>
             <label>GROUP NAME</label><br/>
-            <ons-input id="group_name" modifier="underbar" ng-model="" type="text" placeholder="Healthy eating" float></ons-input>
+            <ons-input id="group_name" modifier="underbar" type="text" placeholder="Healthy eating" 
+            ng-model="habitGroupManager.groupName" float></ons-input>
         </p>
         <p>
             <label>GROUP COLOR</label><br/>
             <!-- TODO: Replace with AngularJS color directive -->
             <button
                 class="jscolor {valueElement:null,value:'66ccff'}"
-                style="border:2px solid black">
+                style="border:2px solid black"
+                ng-model="habitGroupManager.groupColor">
                 Pick a color
             </button>
+            <input type="color" ng-model="habitGroupManager.groupColor">
+            
         </p>
-        <p style="margin-top: 30px;">
-          <ons-button ng-click="">Reset</ons-button>
+        <p>
+            <label>ALARM</label><br/>
+            <input type="time" id="exampleInput" name="input" ng-model="habitGroupManager.alarmTime"
+            placeholder="HH:mm:ss" required />
+        </p>
+        <p style="padding-top: 10px;">
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-default btn-circle" ng-click="habitGroupManager.DayHandler(0);">
+                <input type="checkbox" autocomplete="off" > M
+              </label>
+              <label class="btn btn-default btn-circle" ng-click="habitGroupManager.DayHandler(1);">
+                <input type="checkbox" autocomplete="off"> T
+              </label>
+              <label class="btn btn-default btn-circle" ng-click="habitGroupManager.DayHandler(2);">
+                <input type="checkbox" autocomplete="off"> W
+              </label>
+              <label class="btn btn-default btn-circle" ng-click="habitGroupManager.DayHandler(3);">
+                <input type="checkbox" autocomplete="off"> T
+              </label>
+              <label class="btn btn-default btn-circle" ng-click="habitGroupManager.DayHandler(4);">
+                <input type="checkbox" autocomplete="off"> F
+              </label>
+              <label class="btn btn-default btn-circle" ng-click="habitGroupManager.DayHandler(5);">
+                <input type="checkbox" autocomplete="off"> S
+              </label>
+              <label class="btn btn-default btn-circle" ng-click="habitGroupManager.DayHandler(6);">
+                <input type="checkbox" autocomplete="off"> S
+              </label>
+            </div>
         </p>
     </div>
 </ons-page>
