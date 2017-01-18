@@ -1,0 +1,10 @@
+<ons-popover direction="up down" ng-controller="HabitGroupController as habitGroupManager" cancelable>
+    <div style="text-align: center; opacity: 0.5;">
+      <p>Choose your Habit group color</p>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" ng-click="habitGroupManager.ChooseGroupColor('#f44242');">Red</button>
+        <button type="button" class="btn btn-primary" ng-click="habitGroupManager.ChooseGroupColor('#00ff26');">Green</button>
+        <button type="button" class="btn btn-primary" ng-click="habitGroupManager.ChooseGroupColor('#1500ff');">Blue</button>
+      </div>
+    </div>
+</ons-popover>

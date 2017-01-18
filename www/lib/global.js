@@ -1,5 +1,3 @@
 (function(){
     //Global JS init
 })();
-
-

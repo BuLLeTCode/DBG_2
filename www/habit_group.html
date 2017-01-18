@@ -29,14 +29,17 @@
         <p>
             <label>GROUP COLOR</label><br/>
             <!-- TODO: Replace with AngularJS color directive -->
-            <button
+            <!--<button
                 class="jscolor {valueElement:null,value:'66ccff'}"
                 style="border:2px solid black"
                 ng-model="habitGroupManager.groupColor">
                 Pick a color
             </button>
             <input type="color" ng-model="habitGroupManager.groupColor">
-            
+            -->
+            <div style="text-align: center">
+            <ons-button id="colorPicker" ng-click="habitGroupManager.ShowPopover('#colorPicker')">Click me!</ons-button>
+          </div>
         </p>
         <p>
             <label>ALARM</label><br/>
@@ -67,6 +70,10 @@
                 <input type="checkbox" autocomplete="off"> S
               </label>
             </div>
+        </p>
+        <p>
+            <!-- TODO: Remainder alarm with specific periods will be here -->
+            <!--<ons-button modifier="light">ADD NEW ALARM (TODO)</ons-button>-->
         </p>
     </div>
 </ons-page>
