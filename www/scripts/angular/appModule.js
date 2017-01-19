@@ -1,5 +1,5 @@
 //Global variable for module is bad practices - but life is also a bad practice!
-var module = ons.bootstrap('demo', ['pascalprecht.translate']);
+var module = ons.bootstrap('demo', ['pascalprecht.translate', 'ui.bootstrap']);
 
 module.config(function ($translateProvider) {
   $translateProvider.translations('gb', {

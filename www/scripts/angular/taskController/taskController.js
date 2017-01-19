@@ -3,8 +3,7 @@ module.controller('TaskController', TaskController);
 TaskController.$inject = ['$http', 'oneSignalService'];
       
 function TaskController($http, oneSignalService) {
-    //Init
-    
+    //Init    
     var vm = this;
     
     //UserManagement

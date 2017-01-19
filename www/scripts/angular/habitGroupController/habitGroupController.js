@@ -1,14 +1,13 @@
 module.controller('HabitGroupController', HabitGroupController);
    
-//HabitGroupController.$inject = [''];   
+HabitGroupController.$inject = ['colorService'];   
    
-function HabitGroupController() {
+function HabitGroupController(colorService) {
     var vm = this;
     
     //input fields
     vm.groupName = undefined;
     vm.groupColor = undefined;
-    vm.test = undefined;
     vm.alarmTime = undefined;
     vm.alarmDays = [false, false, false, false, false, false, false]; 
     
@@ -18,20 +17,35 @@ function HabitGroupController() {
     //functions
     vm.CreateHabitGroup = function() 
     {
+        vm.groupColor = colorService.GetSelectedGroupColor();
+        
         alert("Creating Habit Group!");
-        alert("Values: " + vm.groupName + " " + vm.test + " " + vm.alarmTime + " " + vm.alarmDays);
+        var timeOnly = vm.alarmTime.toString().split(" ");
+        alert("Values: " + vm.groupName + " " + vm.groupColor + " " + timeOnly[4] + " " + vm.alarmDays);
+        
+        //TODO: Think about saving alarm days - maybe array with numbers will be better
+        HabitGroups.insert({Name: vm.groupName, Color: vm.groupColor, AlarmTime: timeOnly[4], AlarmDays: vm.alarmDays})
+        .done(function(result)
+        {
+           alert("Inserted!" + result);
+           
+           //Push to another page.
+           app.navi.pushPage('habit_group_manager.html');
+        })
+        .fail(function(err)
+        {
+           alert("Err#" + err.code +": " + err.message);
+        });
     }
     
     vm.ChooseGroupColor = function(color)
     {
         alert("Color:" + color);
-        //Should here will be RGB or HEX? For now - hex
-        vm.test = 'color';
+        colorService.SetGroupColor(color);
     }
     
     vm.DayHandler = function(index)
     {
-        alert("Index: " + index);
         vm.alarmDays[index] = !vm.alarmDays[index];
     }
     
@@ -40,6 +54,8 @@ function HabitGroupController() {
     });
     
     vm.ShowPopover = function(e) {
-    vm.popover.show(e);
-  };
+        vm.popover.show(e);
+    };
+    
+    
 }

@@ -242,6 +242,9 @@
     padding-top: 23px;
 }
 
+.habit-manager{
+    font-size: 85%;
+}
 
 /*Custom image classes */
 .day-checkbox {

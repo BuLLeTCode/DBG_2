@@ -1,0 +1,51 @@
+<ons-page class="habit-manager">
+        
+    <ons-toolbar>
+        <div class="left">
+            <ons-icon
+              icon="ion-ios-arrow-thin-left"
+              size="30px"
+              fixed-width="false"
+              ng-click="app.navi.pushPage('main.html', { animation : 'slide' });">
+            </ons-icon>
+        </div>
+        <div class="center">Add Habit</div>
+        <div class="right">
+            <ons-icon
+              icon="ion-ios-checkmark-empty"
+              size="30px"
+              fixed-width="false"
+              ng-click="habitGroupManager.CreateHabitGroup();">
+            </ons-icon>
+        </div>
+    </ons-toolbar>
+
+    <div>
+        <span>HABIT ICON HERE:</span>
+        <label>Habit 0</label>
+    </div>
+    <div>
+        <span>TIME ICON HERE:</span>
+        <label>Total Times of Habits will be here</label>
+    </div>
+    <div class="container">
+        <div>
+            <div class="form-group">
+    	        <!--<label for="states">Search for US States</label>-->
+	            <input name="habit_search" id="habit_search" type="text" placeholder="Search or add a new habit" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
+    		</div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Avaible Habits</div>
+          <div class="panel-body">
+            Content comming soon
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Created Habits</div>
+          <div class="panel-body">
+            Content comming soon
+          </div>
+        </div>
+    </div>
+</ons-page>
