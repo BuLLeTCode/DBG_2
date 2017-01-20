@@ -11,7 +11,7 @@ function HabitGroupController(colorService) {
     vm.alarmTime = undefined;
     vm.alarmDays = [false, false, false, false, false, false, false]; 
     
-    //Collection objects
+    //Collection objects - TODO: Maybe factory for this? 
     var HabitGroups = monaca.cloud.Collection("HabitGroups");
     
     //functions

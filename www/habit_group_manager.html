@@ -1,4 +1,4 @@
-<ons-page class="habit-manager">
+<ons-page class="habit-manager" ng-controller="HabitController as habitManager">
         
     <ons-toolbar>
         <div class="left">
@@ -19,7 +19,6 @@
             </ons-icon>
         </div>
     </ons-toolbar>
-
     <div>
         <span>HABIT ICON HERE:</span>
         <label>Habit 0</label>
@@ -38,14 +37,46 @@
         <div class="panel panel-default">
           <div class="panel-heading">Avaible Habits</div>
           <div class="panel-body">
-            Content comming soon
+            <div id="avaibleHabitLoading" ng-if="habitManager.premadeHabits.length === 0">
+                <div id="fountainG_1" class="fountainG"></div>
+                <div id="fountainG_2" class="fountainG"></div>
+                <div id="fountainG_3" class="fountainG"></div>
+                <div id="fountainG_4" class="fountainG"></div>
+            	<div id="fountainG_5" class="fountainG"></div>
+            	<div id="fountainG_6" class="fountainG"></div>
+            	<div id="fountainG_7" class="fountainG"></div>
+            	<div id="fountainG_8" class="fountainG"></div>
+            </div>
+            <ons-list>
+              <ons-list-item tappable ng-repeat="h in habitManager.premadeHabits">
+              <div class="center">
+                  <div class="title">
+                    {{ h.name }} <span style="color: green;">{{h.duration}}</span>
+                  </div>
+              </div>
+              </ons-list-item>
+            </ons-list>
           </div>
         </div>
         <div class="panel panel-default">
           <div class="panel-heading">Created Habits</div>
           <div class="panel-body">
+            <div id="createdHabitLoading">
+                <div id="fountainG_1" class="fountainG"></div>
+                <div id="fountainG_2" class="fountainG"></div>
+                <div id="fountainG_3" class="fountainG"></div>
+                <div id="fountainG_4" class="fountainG"></div>
+            	<div id="fountainG_5" class="fountainG"></div>
+            	<div id="fountainG_6" class="fountainG"></div>
+            	<div id="fountainG_7" class="fountainG"></div>
+            	<div id="fountainG_8" class="fountainG"></div>
+            </div>
             Content comming soon
           </div>
         </div>
+        
+        {{habitManager.premadeHabits}}<br/>
+        {{habitManager.habitCount}}<br/>
+        {{habitManager.habitGroupDuration}}<br/>
     </div>
 </ons-page>
