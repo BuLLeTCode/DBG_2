@@ -247,6 +247,11 @@
     font-size: 85%;
 }
 
+#today_habit_groups{
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
 /*Custom image classes */
 .day-checkbox {
     /*background-image: url("css_res/DayPickerBackground.png");*/

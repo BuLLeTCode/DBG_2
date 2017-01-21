@@ -1,8 +1,8 @@
 module.controller('TaskController', TaskController);
       
-TaskController.$inject = ['$http', 'oneSignalService'];
+TaskController.$inject = ['$http', 'oneSignalService', 'habitGroupFactory', 'habitGroupService'];
       
-function TaskController($http, oneSignalService) {
+function TaskController($http, oneSignalService, habitGroupFactory, habitGroupService) {
     //Init    
     var vm = this;
     
@@ -13,8 +13,10 @@ function TaskController($http, oneSignalService) {
     //Habit page
     vm.userSearch = undefined;
     vm.userHabits = [];
+    vm.userHabitGroups = [];
     vm.habitName = undefined;
     vm.habitPushDelay = undefined;
+    vm.showHabits = false;
     
     //Collection objects
     var Habits = monaca.cloud.Collection("Habits");
@@ -125,6 +127,13 @@ function TaskController($http, oneSignalService) {
            alert("Err#" + err.code +": " + err.message);
         });
     };
+    
+    vm.displayUserHabitGroups = function(){
+//        alert("Displaying user habit groups");
+//        alert("T:" + habitGroupFactory.GetUserHabitGroups());
+//        vm.userHabitGroups = habitGroupFactory.GetUserHabitGroups();
+        vm.userHabitGroups = habitGroupService.GetHabitGroups();
+    }
     
     //Push notification
     vm.sendPushNotification = function(){

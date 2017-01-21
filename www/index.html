@@ -24,8 +24,10 @@
   <script src="scripts/angular/services/oneSignalService.js"></script>
   <script src="scripts/angular/services/colorService.js"></script>
   <script src="scripts/angular/services/utilitiesService.js"></script>
+  <script src="scripts/angular/services/habitGroupService.js"></script>
   <!-- Factorys -->
   <script src="scripts/angular/factorys/premadeHabitFactory.js"></script>
+  <script src="scripts/angular/factorys/habitGroupFactory.js"></script>
   <!-- Controllers -->
   <script src="scripts/angular/taskController/taskController.js"></script>
   <script src="scripts/angular/languageController/languageController.js"></script>
@@ -42,6 +44,7 @@
   
 </head>
 <body>
+    <!-- This is main selection page : shoulde be removed or replaced with kinda loading page for use authentication -->
     <ons-navigator animation="slide" var="app.navi">
       <ons-page ng-controller="UserManagmentController as userManager" ng-init="userManager.checkAppUser();">
         <ons-toolbar>
@@ -59,12 +62,9 @@
         <p style="text-align: center; margin-top: 30px;">
           <ons-button modifier="light" ng-click="app.navi.pushPage('main.html');">MAIN</ons-button>
         </p>
-        <div ng-controller="LanguageController as langManager" ng-init="langManager.getActiveLanguage()">
-            <!-- add tooltip for changuage change? -->
-            <ul id="lang-switch" class="list-inline">
-                <li ng-repeat="language in langManager.possibleLangs track by $index"><a href="#" ng-click="langManager.changeActiveLanguage(language)"><img ng-src="{{langManager.imagePath}}{{language}}{{langManager.imageFormat}}"/></a></li>
-            </ul>
-        </div>
+        <p style="text-align: center; margin-top: 30px;">
+          <ons-button modifier="light" ng-click="app.navi.pushPage('habit_group_manager.html');">Habit Manager</ons-button>
+        </p>
       </ons-page>
     </ons-navigator>
     <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
@@ -190,7 +190,7 @@
     </div>
     
     <ons-page ng-controller="TaskController as taskManager">
-     <div class="panel-body">
+     <div class="panel-body" ng-init="taskManager.displayUserHabitGroups();">
       <h1>Wall</h1> 
       <ul class="list-inline">
         <li><a href="#" ng-click="app.navi.pushPage('main.html');">Wall</a></li>
@@ -199,8 +199,26 @@
       </ul>
       <div ng-controller="UserManagmentController as userManager" ng-init="userManager.updateUserCollection();"> 
       </div>
+        <div id="today_habit_groups" ng-show="taskManager.showHabits">
+            <label>TODAY</label><br/>
+            <ons-list>
+              <ons-list-item tappable ng-repeat="hg in taskManager.userHabitGroups track by $index">
+              <div class="title">              
+              <span style="background-color: {{hg.color}}; border-radius: 25px;">{{ hg.name }}<ons-icon
+              icon="ion-android-create"
+              size="30px"
+              fixed-width="false"
+              style="color: white;"
+              ng-click="app.navi.pushPage('habit_group_manager.html', {id: 'bla'});">
+            </ons-icon></span> <strong>{{hg.alarmTime}}</strong>
+              </div>
+              </ons-list-item>
+            </ons-list>
+        </div>
+      </div>
       <div class="panel-footer">
         <ons-button id="push-notification" ng-click="taskManager.sendPushNotification()" modifier="cta">Push Notification</ons-button>
+        <ons-button id="push-notification" ng-click="taskManager.displayUserHabitGroups(); taskManager.showHabits = !taskManager.showHabits" modifier="cta">{{taskManager.showHabits ? 'Hide' : 'Show'}} Habits</ons-button>
         <!--<ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>-->
         <ul id="lang-switch" class="list-inline" ng-controller="LanguageController as langManager" ng-init="langManager.getActiveLanguage()">
             <li ng-repeat="language in langManager.possibleLangs track by $index"><a href="#" ng-click="langManager.changeActiveLanguage(language)"><img ng-src="{{langManager.imagePath}}{{language}}{{langManager.imageFormat}}"/></a></li>

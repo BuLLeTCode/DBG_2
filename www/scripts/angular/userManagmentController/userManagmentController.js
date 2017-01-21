@@ -6,7 +6,7 @@ function UserManagmentController(oneSignalService) {
     //init
     var vm = this;
     
-    //Interval for guest account generating?
+    //Interval for guest account generating? Maybe use part of deviceId?
     var maxAccounts = 10000;
     var minAccounts = 1;
     
@@ -30,8 +30,17 @@ function UserManagmentController(oneSignalService) {
         {
 //           alert("Err#" + err.code +": " + err.message);
             vm.createGuestUser();
+//            vm.checkIfDeviceHasGuestAccount();
         });    
     };
+    
+    vm.checkIfDeviceHasGuestAccount = function(){
+        alert("checking if device has user account");
+//        alert("1: " + monaca.User.list);
+//        alert("2: " + monaca.cloud.User.list);
+
+        //How to check if exist user with device id?
+    }
     
     vm.createGuestUser = function(){
         var randIndex = Math.floor(Math.random() * (maxAccounts - minAccounts + 1)) + minAccounts;
