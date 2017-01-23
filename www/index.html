@@ -202,14 +202,15 @@
         <div id="today_habit_groups" ng-show="taskManager.showHabits">
             <label>TODAY</label><br/>
             <ons-list>
-              <ons-list-item tappable ng-repeat="hg in taskManager.userHabitGroups track by $index">
+              <ons-list-item tappable ng-repeat="hg in taskManager.userHabitGroups track by $index"
+              ng-click="app.navi.pushPage('habit_group_view.html'">
               <div class="title">              
               <span style="background-color: {{hg.color}}; border-radius: 25px;">{{ hg.name }}<ons-icon
               icon="ion-android-create"
               size="30px"
               fixed-width="false"
               style="color: white;"
-              ng-click="app.navi.pushPage('habit_group_manager.html', {id: 'bla'});">
+              ng-click="app.navi.pushPage('habit_group_manager.html');">
             </ons-icon></span> <strong>{{hg.alarmTime}}</strong>
               </div>
               </ons-list-item>
