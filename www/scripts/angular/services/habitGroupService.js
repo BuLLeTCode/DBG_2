@@ -30,6 +30,8 @@ function habitGroupService() {
 
                 vm.userHabitGroups.push(habitGroup);
            }
+           
+           $("#fountainG").hide();
         })
         .fail(function(err) 
         {

@@ -197,8 +197,21 @@
         <li><a href="#" ng-click="app.navi.pushPage('history.html');">History</a></li>
         <li><a href="#" ng-click="app.navi.pushPage('journey.html');">Journey</a></li>
       </ul>
+      <div id="next_step">
+        <!-- Div for Janis messages -->
+      </div>
       <div ng-controller="UserManagmentController as userManager" ng-init="userManager.updateUserCollection();"> 
       </div>
+        <div id="fountainG" style="padding-top: 12px; padding-bottom: 15px;">
+            <div id="fountainG_1" class="fountainG"></div>
+            <div id="fountainG_2" class="fountainG"></div>
+            <div id="fountainG_3" class="fountainG"></div>
+            <div id="fountainG_4" class="fountainG"></div>
+        	<div id="fountainG_5" class="fountainG"></div>
+        	<div id="fountainG_6" class="fountainG"></div>
+        	<div id="fountainG_7" class="fountainG"></div>
+        	<div id="fountainG_8" class="fountainG"></div>
+        </div>
         <div id="today_habit_groups" ng-show="taskManager.showHabits">
             <label>TODAY</label><br/>
             <ons-list>
@@ -211,7 +224,7 @@
               fixed-width="false"
               style="color: white;"
               ng-click="app.navi.pushPage('habit_group_manager.html');">
-            </ons-icon></span> <strong>{{hg.alarmTime}}</strong>
+              </ons-icon></span> <strong>{{hg.alarmTime}}</strong>
               </div>
               </ons-list-item>
             </ons-list>
