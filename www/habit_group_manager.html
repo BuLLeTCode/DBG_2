@@ -50,9 +50,19 @@
             <ons-list ng-init="habitManager.LoadPremadeHabits()">
               <ons-list-item tappable ng-repeat="h in habitManager.premadeHabits">
               <div class="center">
-                  <div class="title">
+                  <div class="habit_group_title">
                     {{ h.name }} <span style="color: green;">{{h.duration}}</span><br/>
-                    {{ h.description }}
+                  </div>
+                  <div class="habit_group_description">
+                     <i>{{ h.description }}</i>
+                  </div>
+                  <div class="right">
+                    <ons-icon
+                      icon="ion-ios-checkmark-empty"
+                      size="30px"
+                      fixed-width="false"
+                      ng-click="habitGroupManager.CreateHabitGroup();">
+                    </ons-icon>
                   </div>
               </div>
               </ons-list-item>
