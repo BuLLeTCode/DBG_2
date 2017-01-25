@@ -4,53 +4,52 @@ module.factory('premadeHabitFactory', premadeHabitFactory);
 function premadeHabitFactory() { 
     
     //Do this is needed?
-    var vm = this;
-    
-    //Collection objects
-    var PremadeHabits = monaca.cloud.Collection("PremadeHabits");
-    
+    var vm = this; 
+    var premadeHabits = monaca.cloud.Collection("PremadeHabits");
     return {
         LoadPremadeHabits: LoadPremadeHabits,
         GetPremadeHabitDuration: GetPremadeHabitDuration
     };
 
     function LoadPremadeHabits(){
+        //Collection objects
+        
+        alert("Loading Premade habits");
         vm.userHabits = [];
         
-        //TODO: Remove limit...
-        PremadeHabits.findMine("", "", {propertyNames: ["Icon", "HabitName", "Description", "Duration"], limit: 10})
+        return premadeHabits.find("", "", {propertyNames: ["Icon", "HabitName", "Description", "Duration"], limit: 10})
         .done(function(result)
         {
-           alert('Total items found: ' + result.totalItems);
-           alert('The name of the first item: ' + result.items[0].HabitName + " delay: " + result.items[0].Duration);
-           
-           for(var i = 0; i < result.items.lenght; i++)
+           console.log('Total items found: ' + result.totalItems);
+           for(var i = 0; i < result.items.length; i++)
            {
-                var newHabit = {
+               //TODO: Check alarm day.
+               
+                var premadeHabit = {
+                    id: result.items[i]._id,
                     icon: result.items[i].Icon,
                     name: result.items[i].HabitName,
                     description: result.items[i].Description,
                     duration: result.items[i].Duration
                 };
-                alert("New habit added");
-//               vm.userHabits[i] = newHabit;
-                vm.userHabits.push(newHabit);
+                alert("Inserting: " + premadeHabit.name);
+
+                vm.userHabits.push(premadeHabit);
            }
            
            return vm.userHabits;
         })
         .fail(function(err)
         {
-           alert("Err#" + err.code +": " + err.message);
-           
-           return null;
-        });
+           console.log("Err#" + err.code +": " + err.message);
+        }); 
+        
     }
     
     function GetPremadeHabitDuration(){
         vm.total = 0;
         
-         PremadeHabits.findMine("", "", {propertyNames: ["Icon", "HabitName", "Description", "Duration"], limit: 10})
+         premadeHabits.find("", "", {propertyNames: ["Icon", "HabitName", "Description", "Duration"], limit: 10})
         .done(function(result)
         {
            alert('Total items found: ' + result.totalItems);

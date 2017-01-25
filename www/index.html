@@ -24,10 +24,9 @@
   <script src="scripts/angular/services/oneSignalService.js"></script>
   <script src="scripts/angular/services/colorService.js"></script>
   <script src="scripts/angular/services/utilitiesService.js"></script>
-  <script src="scripts/angular/services/habitGroupService.js"></script>
   <!-- Factorys -->
   <script src="scripts/angular/factorys/premadeHabitFactory.js"></script>
-  <script src="scripts/angular/factorys/habitGroupFactory.js"></script>
+  <script src="scripts/angular/factorys/groupHabitFactory.js"></script>
   <!-- Controllers -->
   <script src="scripts/angular/taskController/taskController.js"></script>
   <script src="scripts/angular/languageController/languageController.js"></script>
@@ -216,7 +215,7 @@
             <label>TODAY</label><br/>
             <ons-list>
               <ons-list-item tappable ng-repeat="hg in taskManager.userHabitGroups track by $index"
-              ng-click="app.navi.pushPage('habit_group_view.html'">
+              ng-click="app.navi.pushPage('habit_group_view.html')">
               <div class="title">              
               <span style="background-color: {{hg.color}}; border-radius: 25px;">{{ hg.name }}<ons-icon
               icon="ion-android-create"
@@ -224,7 +223,7 @@
               fixed-width="false"
               style="color: white;"
               ng-click="app.navi.pushPage('habit_group_manager.html');">
-              </ons-icon></span> <strong>{{hg.alarmTime}}</strong>
+              </ons-icon></span> <strong>{{hg.alarmTime}}</strong> 
               </div>
               </ons-list-item>
             </ons-list>
@@ -232,7 +231,7 @@
       </div>
       <div class="panel-footer">
         <ons-button id="push-notification" ng-click="taskManager.sendPushNotification()" modifier="cta">Push Notification</ons-button>
-        <ons-button id="push-notification" ng-click="taskManager.displayUserHabitGroups(); taskManager.showHabits = !taskManager.showHabits" modifier="cta">{{taskManager.showHabits ? 'Hide' : 'Show'}} Habits</ons-button>
+        <ons-button id="push-notification" ng-click="taskManager.showHabits = !taskManager.showHabits" modifier="cta">{{taskManager.showHabits ? 'Hide' : 'Show'}} Habits</ons-button>
         <!--<ons-button id="save-task" ng-click="taskManager.logoutUser()" modifier="cta">Logout</ons-button>-->
         <ul id="lang-switch" class="list-inline" ng-controller="LanguageController as langManager" ng-init="langManager.getActiveLanguage()">
             <li ng-repeat="language in langManager.possibleLangs track by $index"><a href="#" ng-click="langManager.changeActiveLanguage(language)"><img ng-src="{{langManager.imagePath}}{{language}}{{langManager.imageFormat}}"/></a></li>

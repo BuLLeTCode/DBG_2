@@ -1,8 +1,8 @@
 module.controller('TaskController', TaskController);
       
-TaskController.$inject = ['$http', 'oneSignalService', 'habitGroupFactory', 'habitGroupService'];
+TaskController.$inject = ['$http', 'oneSignalService', 'groupHabitFactory'];
       
-function TaskController($http, oneSignalService, habitGroupFactory, habitGroupService) {
+function TaskController($http, oneSignalService, groupHabitFactory) {
     //Init    
     var vm = this;
     
@@ -16,7 +16,7 @@ function TaskController($http, oneSignalService, habitGroupFactory, habitGroupSe
     vm.userHabitGroups = [];
     vm.habitName = undefined;
     vm.habitPushDelay = undefined;
-    vm.showHabits = false;
+    vm.showHabits = false; 
     
     //Collection objects
     var Habits = monaca.cloud.Collection("Habits");
@@ -129,10 +129,24 @@ function TaskController($http, oneSignalService, habitGroupFactory, habitGroupSe
     };
     
     vm.displayUserHabitGroups = function(){
-//        alert("Displaying user habit groups");
-//        alert("T:" + habitGroupFactory.GetUserHabitGroups());
-//        vm.userHabitGroups = habitGroupFactory.GetUserHabitGroups();
-        vm.userHabitGroups = habitGroupService.GetHabitGroups();
+        var myDataPromise = groupHabitFactory.LoadHabitGroups();
+        myDataPromise.then(function(result) {  
+            for(var i = 0; i < result.items.length; i++)
+           {
+               //TODO: Check alarm day.
+               
+                var habitGroup = {
+                    name: result.items[i].Name,
+                    color: result.items[i].Color,
+                    alarmTime: result.items[i].AlarmTime
+                };
+                alert("Inserting: " + habitGroup.name);
+    
+                vm.userHabitGroups.push(habitGroup);
+           }
+           
+           $("#fountainG").hide();
+        });
     }
     
     //Push notification
