@@ -32,7 +32,6 @@ function premadeHabitFactory() {
                     description: result.items[i].Description,
                     duration: result.items[i].Duration
                 };
-                alert("Inserting: " + premadeHabit.name);
 
                 vm.userHabits.push(premadeHabit);
            }

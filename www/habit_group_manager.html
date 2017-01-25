@@ -47,11 +47,12 @@
             	<div id="fountainG_7" class="fountainG"></div>
             	<div id="fountainG_8" class="fountainG"></div>
             </div>
-            <ons-list>
+            <ons-list ng-init="habitManager.LoadPremadeHabits()">
               <ons-list-item tappable ng-repeat="h in habitManager.premadeHabits">
               <div class="center">
                   <div class="title">
-                    {{ h.name }} <span style="color: green;">{{h.duration}}</span>
+                    {{ h.name }} <span style="color: green;">{{h.duration}}</span><br/>
+                    {{ h.description }}
                   </div>
               </div>
               </ons-list-item>
