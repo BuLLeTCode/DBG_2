@@ -1,8 +1,8 @@
 module.controller('HabitGroupController', HabitGroupController);
    
-HabitGroupController.$inject = ['colorService'];   
+HabitGroupController.$inject = ['colorService', 'pushPageDataTransferFactory'];   
    
-function HabitGroupController(colorService) {
+function HabitGroupController(colorService, pushPageDataTransferFactory) {
     var vm = this;
     
     //input fields
@@ -10,6 +10,7 @@ function HabitGroupController(colorService) {
     vm.groupColor = undefined;
     vm.alarmTime = undefined;
     vm.alarmDays = [false, false, false, false, false, false, false]; 
+    vm.Testing = pushPageDataTransferFactory.LoadParams(0);
     
     //Collection objects - TODO: Maybe factory for this? 
     var HabitGroups = monaca.cloud.Collection("HabitGroups");
@@ -56,6 +57,4 @@ function HabitGroupController(colorService) {
     vm.ShowPopover = function(e) {
         vm.popover.show(e);
     };
-    
-    
 }

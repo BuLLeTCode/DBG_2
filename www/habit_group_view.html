@@ -1,8 +1,26 @@
-<ons-page>
+<ons-page ng-controller="HabitGroupController as habitGroupManager">
         
     <ons-toolbar>
-        <div class="center">Page2</div>
+        <div class="left">
+            <ons-icon
+              icon="ion-ios-close-empty"
+              size="30px"
+              fixed-width="false"
+              ng-click="app.navi.pushPage('main.html', { animation : 'slide' });">
+            </ons-icon>
+        </div>
+        <div class="center">BIND HABIT GROUP NAME</div>
+        <div class="right">
+            <ons-icon
+              icon="ion-ios-compose-outline"
+              size="30px"
+              fixed-width="false"
+              ng-click="habitGroupManager.CreateHabitGroup();">
+            </ons-icon>
+        </div>
     </ons-toolbar>
 
     <p>This is the Onsen Page Template.</p>
+    
+    {{habitGroupManager.Testing}}
 </ons-page>

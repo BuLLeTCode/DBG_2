@@ -27,6 +27,7 @@
   <!-- Factorys -->
   <script src="scripts/angular/factorys/premadeHabitFactory.js"></script>
   <script src="scripts/angular/factorys/groupHabitFactory.js"></script>
+  <script src="scripts/angular/factorys/pushPageDataTransferFactory.js"></script>
   <!-- Controllers -->
   <script src="scripts/angular/taskController/taskController.js"></script>
   <script src="scripts/angular/languageController/languageController.js"></script>
@@ -108,7 +109,6 @@
     <!-- Register template -->
   <ons-template id="register.html">
     <ons-page ng-controller="TaskController as taskManager">
-    
         <ons-toolbar>
           <div class="left">
             <ons-back-button>Back</ons-back-button>
@@ -201,7 +201,7 @@
       </div>
       <div ng-controller="UserManagmentController as userManager" ng-init="userManager.updateUserCollection();"> 
       </div>
-        <div id="fountainG" style="padding-top: 12px; padding-bottom: 15px;">
+        <div id="habitGroupLoader" ng-if="taskManager.userHabitGroups.lenght <= 0" style="padding-top: 12px; padding-bottom: 15px;">
             <div id="fountainG_1" class="fountainG"></div>
             <div id="fountainG_2" class="fountainG"></div>
             <div id="fountainG_3" class="fountainG"></div>
@@ -215,7 +215,7 @@
             <label>TODAY</label><br/>
             <ons-list>
               <ons-list-item tappable ng-repeat="hg in taskManager.userHabitGroups track by $index"
-              ng-click="app.navi.pushPage('habit_group_view.html')">
+              ng-click="taskManager.showDetail(0); app.navi.pushPage('habit_group_view.html')">
               <div class="title">              
               <span style="background-color: {{hg.color}}; border-radius: 25px;">{{ hg.name }}<ons-icon
               icon="ion-android-create"

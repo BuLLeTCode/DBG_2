@@ -1,8 +1,8 @@
 module.controller('TaskController', TaskController);
       
-TaskController.$inject = ['$http', 'oneSignalService', 'groupHabitFactory'];
+TaskController.$inject = ['$http', 'oneSignalService', 'groupHabitFactory', 'pushPageDataTransferFactory'];
       
-function TaskController($http, oneSignalService, groupHabitFactory) {
+function TaskController($http, oneSignalService, groupHabitFactory, pushPageDataTransferFactory) {
     //Init    
     var vm = this;
     
@@ -130,7 +130,7 @@ function TaskController($http, oneSignalService, groupHabitFactory) {
     
     vm.displayUserHabitGroups = function(){
         var myDataPromise = groupHabitFactory.LoadHabitGroups();
-        myDataPromise.then(function(result) {  
+        myDataPromise.then(function(result) {
             for(var i = 0; i < result.items.length; i++)
            {
                //TODO: Check alarm day.
@@ -144,8 +144,6 @@ function TaskController($http, oneSignalService, groupHabitFactory) {
     
                 vm.userHabitGroups.push(habitGroup);
            }
-           
-           $("#fountainG").hide();
         });
     }
     
@@ -154,4 +152,8 @@ function TaskController($http, oneSignalService, groupHabitFactory) {
         //TODO: Add server side function... $http
         $http.post('http://46.101.80.183/dbg/CreateNotification.php');
     };
+    
+    vm.showDetail = function(index){
+        pushPageDataTransferFactory.SetParams(index);
+    }
 }
