@@ -1,8 +1,8 @@
 module.controller('HabitGroupController', HabitGroupController);
    
-HabitGroupController.$inject = ['colorService', 'groupHabitFactory', 'pushPageDataTransferFactory'];   
+HabitGroupController.$inject = ['colorService', 'groupHabitFactory', 'pushPageDataTransferFactory', '$scope'];   
    
-function HabitGroupController(colorService, groupHabitFactory, pushPageDataTransferFactory) {
+function HabitGroupController(colorService, groupHabitFactory, pushPageDataTransferFactory, $scope) {
     var vm = this;
     
     //input fields
@@ -12,6 +12,7 @@ function HabitGroupController(colorService, groupHabitFactory, pushPageDataTrans
     vm.alarmDays = [false, false, false, false, false, false, false]; 
     vm.targetId = pushPageDataTransferFactory.LoadParams();
     vm.targetInfo = undefined;
+    vm.sometext = undefined;
     
     //Collection objects - TODO: Maybe factory for this? 
     var HabitGroups = monaca.cloud.Collection("HabitGroups");
@@ -70,7 +71,8 @@ function HabitGroupController(colorService, groupHabitFactory, pushPageDataTrans
                 alarmTime: result.items[0].AlarmTime
             };
             
-            alert(vm.targetInfo.name);
+            //Major fix - update $digest manualy, when data has been returned
+            $scope.$apply();
         });
     };
 }
