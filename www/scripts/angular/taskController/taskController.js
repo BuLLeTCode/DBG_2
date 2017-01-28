@@ -136,6 +136,7 @@ function TaskController($http, oneSignalService, groupHabitFactory, pushPageData
                //TODO: Check alarm day.
                
                 var habitGroup = {
+                    id: result.items[i]._id,
                     name: result.items[i].Name,
                     color: result.items[i].Color,
                     alarmTime: result.items[i].AlarmTime

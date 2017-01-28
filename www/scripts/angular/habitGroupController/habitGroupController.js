@@ -1,8 +1,8 @@
 module.controller('HabitGroupController', HabitGroupController);
    
-HabitGroupController.$inject = ['colorService', 'pushPageDataTransferFactory'];   
+HabitGroupController.$inject = ['colorService', 'groupHabitFactory', 'pushPageDataTransferFactory'];   
    
-function HabitGroupController(colorService, pushPageDataTransferFactory) {
+function HabitGroupController(colorService, groupHabitFactory, pushPageDataTransferFactory) {
     var vm = this;
     
     //input fields
@@ -10,7 +10,8 @@ function HabitGroupController(colorService, pushPageDataTransferFactory) {
     vm.groupColor = undefined;
     vm.alarmTime = undefined;
     vm.alarmDays = [false, false, false, false, false, false, false]; 
-    vm.Testing = pushPageDataTransferFactory.LoadParams(0);
+    vm.targetId = pushPageDataTransferFactory.LoadParams();
+    vm.targetInfo = undefined;
     
     //Collection objects - TODO: Maybe factory for this? 
     var HabitGroups = monaca.cloud.Collection("HabitGroups");
@@ -56,5 +57,20 @@ function HabitGroupController(colorService, pushPageDataTransferFactory) {
     
     vm.ShowPopover = function(e) {
         vm.popover.show(e);
+    };
+    
+    vm.LoadHabitGroup = function(){
+        var myDataPromise = groupHabitFactory.LoadSpecificHabitGroup(vm.targetId);
+        
+        myDataPromise.then(function(result) {
+            vm.targetInfo = {
+                id: result.items[0]._id,
+                name: result.items[0].Name,
+                color: result.items[0].Color,
+                alarmTime: result.items[0].AlarmTime
+            };
+            
+            alert(vm.targetInfo.name);
+        });
     };
 }
