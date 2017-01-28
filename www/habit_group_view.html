@@ -9,7 +9,7 @@
                   ng-click="app.navi.pushPage('main.html', { animation : 'slide' });">
                 </ons-icon>
             </div>
-            <div class="center">habitGroupManager.targetInfo.name</div>
+            <div class="center">{{habitGroupManager.targetInfo.name}}</div>
             <div class="right">
                 <ons-icon
                   icon="ion-ios-compose-outline"
@@ -20,7 +20,7 @@
             </div>
         </ons-toolbar>
         
-        <div class="panel-body">
+        <div class="panel-body habit_group_container">
         {{habitGroupManager.targetInfo}}
         </div>
     </div>
