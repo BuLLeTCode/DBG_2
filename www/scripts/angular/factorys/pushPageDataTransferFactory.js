@@ -4,19 +4,32 @@ module.factory('pushPageDataTransferFactory', pushPageDataTransferFactory);
 function pushPageDataTransferFactory() { 
     var vm = this;
     
-    vm.selectedItem = undefined;
+    //
+    vm.passedItems = undefined;
     
     return {
         LoadParams : LoadParams,
-        SetParams : SetParams
+        SetParams : SetParams,
+        LoadMultipleParams : LoadMultipleParams,
+        SetMultipleParams : SetMultipleParams
     };
     
     
     function LoadParams(){
-        return vm.selectedItem;
+        return vm.passedItems;
     }
     
-    function SetParams(id){
-        vm.selectedItem = id;
+    //Can also been used to set object with many propeties
+    function SetParams(params){
+        vm.passedItems = params;
+    }
+    
+    //TODO: Create case for multiply params.
+    function LoadMultipleParams(){
+        //ignore
+    }
+    
+    function SetMultipleParams(){
+        //ignore
     }
 }
