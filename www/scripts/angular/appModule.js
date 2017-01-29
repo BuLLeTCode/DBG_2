@@ -1,6 +1,7 @@
 //Global variable for module is bad practices - but life is also a bad practice!
-var module = ons.bootstrap('demo', ['pascalprecht.translate', 'ui.bootstrap']);
+var module = ons.bootstrap('demo', ['pascalprecht.translate', 'ui.bootstrap', 'angularMoment']);
 
+//Angular-Translate config
 module.config(function ($translateProvider) {
   $translateProvider.translations('gb', {
     WELCOME: 'Welcome to DBG',

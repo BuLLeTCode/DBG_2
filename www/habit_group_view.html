@@ -18,6 +18,16 @@
                   ng-click="habitGroupManager.CreateHabitGroup();">
                 </ons-icon>
             </div>
+            <div id="habit_group_variables">
+                <div id="habit_group_start_time">
+                  <ons-icon
+                  icon="ion-ios-clock-outline"
+                  size="30px"
+                  fixed-width="false">
+                </ons-icon>
+                {{habitGroupManager.targetInfo.alarmTime | amDateFormat: 'HH:mm'}}
+                </div>
+            </div>
         </ons-toolbar>
         
         <div class="panel-body habit_group_container">

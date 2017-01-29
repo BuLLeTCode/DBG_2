@@ -139,12 +139,13 @@ function TaskController($http, oneSignalService, groupHabitFactory, pushPageData
             for(var i = 0; i < result.items.length; i++)
            {
                //TODO: Check alarm day.
+                vm.alarmTimeSplit = result.items[i].AlarmTime.split(":");
                
                 var habitGroup = {
                     id: result.items[i]._id,
                     name: result.items[i].Name,
                     color: result.items[i].Color,
-                    alarmTime: result.items[i].AlarmTime
+                    alarmTime:  new Date("2011-04-20 " + vm.alarmTimeSplit[0] + ":" + vm.alarmTimeSplit[1] +":" + vm.alarmTimeSplit[2])
                 };
     
                 vm.userHabitGroups.push(habitGroup);

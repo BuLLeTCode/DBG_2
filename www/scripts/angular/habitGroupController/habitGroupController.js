@@ -67,11 +67,13 @@ function HabitGroupController(colorService, groupHabitFactory, pushPageDataTrans
         utilitiesService.ShowLoading();
         
         myDataPromise.then(function(result) {
+            vm.alarmTimeSplit = result.items[0].AlarmTime.split(":");
+
             vm.targetInfo = {
                 id: result.items[0]._id,
                 name: result.items[0].Name,
                 color: result.items[0].Color,
-                alarmTime: result.items[0].AlarmTime
+                alarmTime: new Date("2011-04-20 " + vm.alarmTimeSplit[0] + ":" + vm.alarmTimeSplit[1] +":" + vm.alarmTimeSplit[2])
             };
             
             utilitiesService.HideLoading(); 
