@@ -1,8 +1,8 @@
 module.controller('HabitController', HabitController);
    
-HabitController.$inject = ['premadeHabitFactory'];   
+HabitController.$inject = ['premadeHabitFactory', '$scope', 'utilitiesService'];   
    
-function HabitController(premadeHabitFactory) {
+function HabitController(premadeHabitFactory, $scope, utilitiesService) {
     
     var vm = this;
     vm.premadeHabits = [];
@@ -16,12 +16,12 @@ function HabitController(premadeHabitFactory) {
     }
     
     vm.LoadPremadeHabits = function(){
+        utilitiesService.ShowLoading();
+        
         var myDataPromise = premadeHabitFactory.LoadPremadeHabits();
         myDataPromise.then(function(result) {  
-        for(var i = 0; i < result.items.length; i++)
-           {
-               //TODO: Check alarm day.
-               
+            for(var i = 0; i < result.items.length; i++)
+            {
                 var premadeHabit = {
                     id: result.items[i]._id,
                     icon: result.items[i].Icon,
@@ -31,7 +31,10 @@ function HabitController(premadeHabitFactory) {
                 };
     
                 vm.premadeHabits.push(premadeHabit);
-           }
+            }
+            
+            utilitiesService.HideLoading(); 
+            $scope.$apply();
         });
     }
 }

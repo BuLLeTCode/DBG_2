@@ -1,52 +1,54 @@
 <ons-page class="habit-manager" ng-controller="HabitController as habitManager">
-        
-    <ons-toolbar>
-        <div class="left">
-            <ons-icon
-              icon="ion-ios-arrow-thin-left"
-              size="30px"
-              fixed-width="false"
-              ng-click="app.navi.pushPage('main.html', { animation : 'slide' });">
-            </ons-icon>
-        </div>
-        <div class="center">Add Habit</div>
-        <div class="right">
-            <ons-icon
-              icon="ion-ios-checkmark-empty"
-              size="30px"
-              fixed-width="false"
-              ng-click="habitGroupManager.CreateHabitGroup();">
-            </ons-icon>
-        </div>
-    </ons-toolbar>
-    <div>
-        <span>HABIT ICON HERE:</span>
-        <label>Habit 0</label>
-    </div>
-    <div>
-        <span>TIME ICON HERE:</span>
-        <label>Total Times of Habits will be here</label>
-    </div>
     <div class="container">
+        <div class="jumbotron">
+            <div class="vertical-left">
+                <ons-icon
+                  icon="ion-ios-arrow-thin-left"
+                  size="30px"
+                  fixed-width="false"
+                  ng-click="app.navi.pushPage('main.html', { animation : 'slide' });">
+                </ons-icon>
+            </div>
+            <div class="vertical-center">Add Habit</div>
+            <div class="vertical-right">
+                <ons-icon
+                  icon="ion-ios-checkmark-empty"
+                  size="30px"
+                  fixed-width="false"
+                  ng-click="habitGroupManager.CreateHabitGroup();">
+                </ons-icon>
+            </div>
+            <div class="vertical-left" style="padding-top:10px;">
+                <div class="total_habits">
+                    <ons-icon
+                      icon="ion-ios-color-filter-outline"
+                      size="30px"
+                      fixed-width="false">
+                    </ons-icon>
+                    0 habits
+                </div>
+            </div><br /><br /><br />
+            <div class="vertical-left">
+                <div class="habit_group_total_time">
+                  <ons-icon
+                  icon="ion-ios-stopwatch-outline"
+                  size="30px"
+                  fixed-width="false">
+                </ons-icon>
+                <!-- Here can be angular-moment for calculation -->
+                0
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
         <div>
             <div class="form-group">
-    	        <!--<label for="states">Search for US States</label>-->
-	            <input name="habit_search" id="habit_search" type="text" placeholder="Search or add a new habit" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
+                <input name="habit_search" id="habit_search" type="text" placeholder="Search or add a new habit" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
     		</div>
         </div>
         <div class="panel panel-default">
           <div class="panel-heading">Avaible Habits</div>
           <div class="panel-body">
-            <div id="avaibleHabitLoading" ng-if="habitManager.premadeHabits.length === 0">
-                <div id="fountainG_1" class="fountainG"></div>
-                <div id="fountainG_2" class="fountainG"></div>
-                <div id="fountainG_3" class="fountainG"></div>
-                <div id="fountainG_4" class="fountainG"></div>
-                <div id="fountainG_5" class="fountainG"></div>
-            	<div id="fountainG_6" class="fountainG"></div>
-            	<div id="fountainG_7" class="fountainG"></div>
-            	<div id="fountainG_8" class="fountainG"></div>
-            </div>
             <ons-list ng-init="habitManager.LoadPremadeHabits()">
               <ons-list-item tappable ng-repeat="h in habitManager.premadeHabits">
               <div class="center">
@@ -74,8 +76,9 @@
           <div class="panel-body">
             <div id="createdHabitLoading">
             </div>
-            Content comming soon
+            Content coming soon
           </div>
+        </div>
         </div>
     </div>
 </ons-page>

@@ -1,4 +1,4 @@
-<ons-page class="loading-body" ng-controller="HabitGroupController as habitGroupManager">
+<ons-page class="habit-manager" ng-controller="HabitGroupController as habitGroupManager">
     <div class="container" ng-init="habitGroupManager.LoadHabitGroup();">  
         <div class="jumbotron" style="background-color:{{habitGroupManager.targetInfo.color}} !important; ">
             <div class="vertical-left">
@@ -29,7 +29,7 @@
                 </div>
             </div><br /><br /><br />
             <div class="vertical-left">
-                <div id="habit_group_total_time">
+                <div class="habit_group_total_time">
                   <ons-icon
                   icon="ion-ios-stopwatch-outline"
                   size="30px"
@@ -43,7 +43,7 @@
         <div class="panel-body habit_group_container">
             <ons-list>
               <ons-list-header><!-- TODO: finish habit layout and here loop through all groups habits -->
-                <div id="total_habits">
+                <div class="total_habits">
                 <ons-icon
                   icon="ion-ios-color-filter-outline"
                   size="30px"
