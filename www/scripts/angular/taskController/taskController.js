@@ -1,8 +1,8 @@
 module.controller('TaskController', TaskController);
       
-TaskController.$inject = ['$http', 'oneSignalService', 'groupHabitFactory', 'pushPageDataTransferFactory'];
+TaskController.$inject = ['$http', 'oneSignalService', 'groupHabitFactory', 'pushPageDataTransferFactory', '$scope'];
       
-function TaskController($http, oneSignalService, groupHabitFactory, pushPageDataTransferFactory) {
+function TaskController($http, oneSignalService, groupHabitFactory, pushPageDataTransferFactory, $scope) {
     //Init    
     var vm = this;
     
@@ -141,10 +141,11 @@ function TaskController($http, oneSignalService, groupHabitFactory, pushPageData
                     color: result.items[i].Color,
                     alarmTime: result.items[i].AlarmTime
                 };
-                alert("Inserting: " + habitGroup.name);
     
                 vm.userHabitGroups.push(habitGroup);
            }
+           
+           $scope.$apply();
         });
     }
     

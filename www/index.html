@@ -179,6 +179,7 @@
     </ons-template>
     
     <ons-template id="main.html">
+    <div id="fakeLoader"></div>
     <!-- sliding menu solution using Jasny Bootstrap -->
     <div id="slider-menu" class="navbar navbar-default navbar-fixed-top">
       <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"
@@ -239,6 +240,16 @@
             <li ng-repeat="language in langManager.possibleLangs track by $index"><a href="#" ng-click="langManager.changeActiveLanguage(language)"><img ng-src="{{langManager.imagePath}}{{language}}{{langManager.imageFormat}}"/></a></li>
         </ul>
       </div>
+      <script>
+            $(document).ready(function(){
+                $("#fakeloader").fakeLoader({
+                    timeToHide:1200,
+                    bgColor:"#fff",
+                    imagePath:"http://vectorlogo.biz/wp-content/uploads/2013/01/GOOGLE-VECTORLOGO-BIZ-128x128.png"
+                });
+            });
+        </script>
+
   </ons-page>
   </ons-template>
 </body>
