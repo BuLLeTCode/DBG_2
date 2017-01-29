@@ -1,8 +1,10 @@
 module.controller('TaskController', TaskController);
       
-TaskController.$inject = ['$http', 'oneSignalService', 'groupHabitFactory', 'pushPageDataTransferFactory', '$scope'];
+TaskController.$inject = ['$http', 'oneSignalService', 'groupHabitFactory', 'pushPageDataTransferFactory', '$scope', 
+    'utilitiesService'];
       
-function TaskController($http, oneSignalService, groupHabitFactory, pushPageDataTransferFactory, $scope) {
+function TaskController($http, oneSignalService, groupHabitFactory, pushPageDataTransferFactory, $scope, 
+    utilitiesService) {
     //Init    
     var vm = this;
     
@@ -129,6 +131,9 @@ function TaskController($http, oneSignalService, groupHabitFactory, pushPageData
     };
     
     vm.displayUserHabitGroups = function(){
+            
+        utilitiesService.ShowLoading();
+            
         var myDataPromise = groupHabitFactory.LoadHabitGroups();
         myDataPromise.then(function(result) {
             for(var i = 0; i < result.items.length; i++)
@@ -145,7 +150,9 @@ function TaskController($http, oneSignalService, groupHabitFactory, pushPageData
                 vm.userHabitGroups.push(habitGroup);
            }
            
-           $scope.$apply();
+          utilitiesService.HideLoading(); 
+          //$scope can be injected into controller only.
+          $scope.$apply();
         });
     }
     

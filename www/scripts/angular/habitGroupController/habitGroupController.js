@@ -1,8 +1,9 @@
 module.controller('HabitGroupController', HabitGroupController);
    
-HabitGroupController.$inject = ['colorService', 'groupHabitFactory', 'pushPageDataTransferFactory', '$scope'];   
+HabitGroupController.$inject = ['colorService', 'groupHabitFactory', 'pushPageDataTransferFactory', '$scope',
+    'utilitiesService'];   
    
-function HabitGroupController(colorService, groupHabitFactory, pushPageDataTransferFactory, $scope) {
+function HabitGroupController(colorService, groupHabitFactory, pushPageDataTransferFactory, $scope, utilitiesService) {
     var vm = this;
     
     //input fields
@@ -63,6 +64,8 @@ function HabitGroupController(colorService, groupHabitFactory, pushPageDataTrans
     vm.LoadHabitGroup = function(){
         var myDataPromise = groupHabitFactory.LoadSpecificHabitGroup(vm.targetId);
         
+        utilitiesService.ShowLoading();
+        
         myDataPromise.then(function(result) {
             vm.targetInfo = {
                 id: result.items[0]._id,
@@ -71,6 +74,7 @@ function HabitGroupController(colorService, groupHabitFactory, pushPageDataTrans
                 alarmTime: result.items[0].AlarmTime
             };
             
+            utilitiesService.HideLoading(); 
             //Major fix - update $digest manualy, when data has been returned
             $scope.$apply();
         });
