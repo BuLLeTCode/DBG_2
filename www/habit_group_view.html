@@ -1,7 +1,7 @@
 <ons-page class="loading-body" ng-controller="HabitGroupController as habitGroupManager">
     <div class="container" ng-init="habitGroupManager.LoadHabitGroup();">  
-        <ons-toolbar>
-            <div class="left">
+        <div class="jumbotron" style="background-color:{{habitGroupManager.targetInfo.color}} !important; ">
+            <div class="vertical-left">
                 <ons-icon
                   icon="ion-ios-close-empty"
                   size="30px"
@@ -9,8 +9,8 @@
                   ng-click="app.navi.pushPage('main.html', { animation : 'slide' });">
                 </ons-icon>
             </div>
-            <div class="center">{{habitGroupManager.targetInfo.name}}</div>
-            <div class="right">
+            <div class="vertical-center">{{habitGroupManager.targetInfo.name}}</div>
+            <div class="vertical-right">
                 <ons-icon
                   icon="ion-ios-compose-outline"
                   size="30px"
@@ -18,7 +18,7 @@
                   ng-click="habitGroupManager.CreateHabitGroup();">
                 </ons-icon>
             </div>
-            <div id="habit_group_variables">
+            <div class="vertical-left" style="padding-top:10px;">
                 <div id="habit_group_start_time">
                   <ons-icon
                   icon="ion-ios-clock-outline"
@@ -27,11 +27,36 @@
                 </ons-icon>
                 {{habitGroupManager.targetInfo.alarmTime | amDateFormat: 'HH:mm'}}
                 </div>
+            </div><br /><br /><br />
+            <div class="vertical-left">
+                <div id="habit_group_total_time">
+                  <ons-icon
+                  icon="ion-ios-stopwatch-outline"
+                  size="30px"
+                  fixed-width="false">
+                </ons-icon>
+                <!-- Here can be angular-moment for calculation -->
+                0
+                </div>
             </div>
-        </ons-toolbar>
-        
+        </div>
         <div class="panel-body habit_group_container">
-        {{habitGroupManager.targetInfo}}
+            <ons-list>
+              <ons-list-header><!-- TODO: finish habit layout and here loop through all groups habits -->
+                <div id="total_habits">
+                <ons-icon
+                  icon="ion-ios-color-filter-outline"
+                  size="30px"
+                  fixed-width="false">
+                </ons-icon>
+                0 habits
+                </div>
+                <div id="total_habits_date">
+                    <p>Today &bull;{{habitGroupManager.targetInfo.today}}</p>
+                </div>
+              </ons-list-header>
+              <ons-list-item>Item</ons-list-item>
+            </ons-list>
         </div>
     </div>
 </ons-page>

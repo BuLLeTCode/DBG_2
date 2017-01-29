@@ -73,7 +73,8 @@ function HabitGroupController(colorService, groupHabitFactory, pushPageDataTrans
                 id: result.items[0]._id,
                 name: result.items[0].Name,
                 color: result.items[0].Color,
-                alarmTime: new Date("2011-04-20 " + vm.alarmTimeSplit[0] + ":" + vm.alarmTimeSplit[1] +":" + vm.alarmTimeSplit[2])
+                alarmTime: new Date("2011-04-20 " + vm.alarmTimeSplit[0] + ":" + vm.alarmTimeSplit[1] +":" + vm.alarmTimeSplit[2]),
+                today: moment().format('ddd, D MMM')
             };
             
             utilitiesService.HideLoading(); 
