@@ -1,8 +1,9 @@
 module.controller('HabitController', HabitController);
    
-HabitController.$inject = ['premadeHabitFactory', '$scope', 'utilitiesService'];   
+HabitController.$inject = ['premadeHabitFactory', '$scope', 'utilitiesService', 'groupHabitFactory', 
+    'pushPageDataTransferFactory'];   
    
-function HabitController(premadeHabitFactory, $scope, utilitiesService) {
+function HabitController(premadeHabitFactory, $scope, utilitiesService, groupHabitFactory, pushPageDataTransferFactory) {
     
     var vm = this;
     vm.premadeHabits = [];
@@ -27,7 +28,8 @@ function HabitController(premadeHabitFactory, $scope, utilitiesService) {
                     icon: result.items[i].Icon,
                     name: result.items[i].HabitName,
                     description: result.items[i].Description,
-                    duration: result.items[i].Duration
+                    duration: result.items[i].Duration,
+                    habits: result.items[i].Habits,
                 };
     
                 vm.premadeHabits.push(premadeHabit);
@@ -54,5 +56,9 @@ function HabitController(premadeHabitFactory, $scope, utilitiesService) {
         {
             return m + " mins";        
         }
+    };
+    
+    vm.addPremadeHabitToGroup = function(group, habit){
+        groupHabitFactory.AddHabitToGroup(pushPageDataTransferFactory.LoadParams(), habit);
     };
 }
