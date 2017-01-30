@@ -17,27 +17,23 @@
                   fixed-width="false"
                   ng-click="habitGroupManager.CreateHabitGroup();">
                 </ons-icon>
-            </div>
-            <div class="vertical-left" style="padding-top:10px;">
-                <div class="total_habits">
-                    <ons-icon
-                      icon="ion-ios-color-filter-outline"
-                      size="30px"
-                      fixed-width="false">
-                    </ons-icon>
-                    0 habits
-                </div>
             </div><br /><br /><br />
             <div class="vertical-left">
-                <div class="habit_group_total_time">
-                  <ons-icon
+                <ons-icon
+                  icon="ion-ios-color-filter-outline"
+                  size="30px"
+                  fixed-width="false">
+                </ons-icon>
+                0 habits
+            </div><br /><br /><br />
+            <div class="vertical-left">
+                <ons-icon
                   icon="ion-ios-stopwatch-outline"
                   size="30px"
                   fixed-width="false">
                 </ons-icon>
                 <!-- Here can be angular-moment for calculation -->
                 0
-                </div>
             </div>
         </div>
         <div class="panel-body">
@@ -51,22 +47,27 @@
           <div class="panel-body">
             <ons-list ng-init="habitManager.LoadPremadeHabits()">
               <ons-list-item tappable ng-repeat="h in habitManager.premadeHabits">
-              <div class="center">
+                <div class="vertical-left">
                   <div class="habit_group_title">
-                    {{ h.name }} <span style="color: green;">{{h.duration}}</span><br/>
+                    {{ h.name }} 
                   </div>
-                  <div class="habit_group_description">
-                     <i>{{ h.description }}</i>
-                  </div>
-                  <div class="right">
+                </div>
+                <div class="vertical-left">
+                    <span style="color: green;">{{habitManager.getTimeFromMins(h.duration)}}</span>
+                </div>
+                <div class="vertical-right">
                     <ons-icon
                       icon="ion-ios-checkmark-empty"
                       size="30px"
                       fixed-width="false"
                       ng-click="habitGroupManager.CreateHabitGroup();">
                     </ons-icon>
-                  </div>
-              </div>
+                </div>
+                <div class="vertical-left-new-line">
+                    <div class="habit_group_description">
+                        <i>{{ h.description }}</i>
+                    </div>
+                </div>
               </ons-list-item>
             </ons-list>
           </div>

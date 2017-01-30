@@ -37,4 +37,22 @@ function HabitController(premadeHabitFactory, $scope, utilitiesService) {
             $scope.$apply();
         });
     }
+    
+    //Habit time can be in minutes and hours
+    vm.getTimeFromMins = function(mins){
+        if (mins >= 24 * 60 || mins < 0) {
+            throw new RangeError("Valid input should be greater than or equal to 0 and less than 1440.");
+        }
+        var h = mins / 60 | 0,
+            m = mins % 60 | 0;
+            
+        if(h > 0)
+        {
+            return h + " h " + m + " mins";   
+        }
+        else
+        {
+            return m + " mins";        
+        }
+    };
 }

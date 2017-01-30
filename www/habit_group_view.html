@@ -17,27 +17,23 @@
                   fixed-width="false"
                   ng-click="habitGroupManager.CreateHabitGroup();">
                 </ons-icon>
-            </div>
-            <div class="vertical-left" style="padding-top:10px;">
-                <div id="habit_group_start_time">
-                  <ons-icon
+            </div><br /><br /><br />
+            <div class="vertical-left">
+                <ons-icon
                   icon="ion-ios-clock-outline"
                   size="30px"
                   fixed-width="false">
                 </ons-icon>
                 {{habitGroupManager.targetInfo.alarmTime | amDateFormat: 'HH:mm'}}
-                </div>
             </div><br /><br /><br />
             <div class="vertical-left">
-                <div class="habit_group_total_time">
-                  <ons-icon
+                 <ons-icon
                   icon="ion-ios-stopwatch-outline"
                   size="30px"
                   fixed-width="false">
                 </ons-icon>
                 <!-- Here can be angular-moment for calculation -->
                 0
-                </div>
             </div>
         </div>
         <div class="panel-body habit_group_container">

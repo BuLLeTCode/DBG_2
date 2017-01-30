@@ -125,21 +125,31 @@
 .vertical-center {
   display: inline-block;
   margin:0 auto;
-  width:100px;
+  width:33%;
 
   text-align: center;  /* align the inline(-block) elements horizontally */
 }
 
 .vertical-left {
+  display: inline-block;
   float:left;
-  width:100px;
+  width:33%;
+  
+  text-align: left;
+}
+
+.vertical-left-new-line {
+  display: inline-block;
+  float:left;
+  width:100%;
   
   text-align: left;
 }
 
 .vertical-right {
+    display: inline-block;
   float:right;
-  width:100px;
+  width:33%;
   
   text-align: right;
 }
