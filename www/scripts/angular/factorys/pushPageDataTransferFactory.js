@@ -6,6 +6,7 @@ function pushPageDataTransferFactory() {
     
     //
     vm.passedItems = undefined;
+    vm.passedMultipleParams = [];
     
     return {
         LoadParams : LoadParams,
@@ -24,12 +25,11 @@ function pushPageDataTransferFactory() {
         vm.passedItems = params;
     }
     
-    //TODO: Create case for multiply params.
     function LoadMultipleParams(){
-        //ignore
+        return vm.passedMultipleParams;
     }
     
-    function SetMultipleParams(){
-        //ignore
+    function SetMultipleParams(multiParams){
+        vm.passedMultipleParams = multiParams;
     }
 }

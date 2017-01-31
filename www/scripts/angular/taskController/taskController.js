@@ -145,7 +145,8 @@ function TaskController($http, oneSignalService, groupHabitFactory, pushPageData
                     id: result.items[i]._id,
                     name: result.items[i].Name,
                     color: result.items[i].Color,
-                    alarmTime:  new Date("2011-04-20 " + vm.alarmTimeSplit[0] + ":" + vm.alarmTimeSplit[1] +":" + vm.alarmTimeSplit[2])
+                    alarmTime:  new Date("2011-04-20 " + vm.alarmTimeSplit[0] + ":" + vm.alarmTimeSplit[1] +":" + vm.alarmTimeSplit[2]),
+                    habits: result.items[i].Habits
                 };
     
                 vm.userHabitGroups.push(habitGroup);

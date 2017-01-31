@@ -10,6 +10,7 @@ function HabitController(premadeHabitFactory, $scope, utilitiesService, groupHab
     vm.habitCount = 0;
     //Maybe import moment.js to use for working with date / time
     vm.habitGroupDuration = premadeHabitFactory.GetPremadeHabitDuration();
+    vm.groupInfo = pushPageDataTransferFactory.LoadParams();
     
     if(vm.premadeHabits !== undefined && vm.premadeHabits !== null){
         alert(typeof(vm.premadeHabits));
@@ -29,7 +30,6 @@ function HabitController(premadeHabitFactory, $scope, utilitiesService, groupHab
                     name: result.items[i].HabitName,
                     description: result.items[i].Description,
                     duration: result.items[i].Duration,
-                    habits: result.items[i].Habits,
                 };
     
                 vm.premadeHabits.push(premadeHabit);
@@ -59,6 +59,6 @@ function HabitController(premadeHabitFactory, $scope, utilitiesService, groupHab
     };
     
     vm.addPremadeHabitToGroup = function(group, habit){
-        groupHabitFactory.AddHabitToGroup(pushPageDataTransferFactory.LoadParams(), habit);
+        groupHabitFactory.AddHabitToGroup(group, habit);
     };
 }

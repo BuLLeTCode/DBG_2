@@ -56,12 +56,24 @@
                     <span style="color: green;">{{habitManager.getTimeFromMins(h.duration)}}</span>
                 </div>
                 <div class="vertical-right">
-                    <ons-icon
-                      icon="{{h.habits.contains(h.id) ? 'ion-android-done' : 'ion-android-close'}}"
-                      size="30px"
-                      fixed-width="false"
-                      ng-click="habitManager.addPremadeHabitToGroup(this, h.id);">
-                    </ons-icon>
+                    <div ng-switch on="habitManager.groupInfo.habits.indexOf(h.id)">
+                        <div ng-switch-when="-1">
+                            <ons-icon
+                              icon="ion-android-done"
+                              size="30px"
+                              fixed-width="false">
+                            </ons-icon>
+                        </div>
+                        <div ng-switch-default>
+                             <ons-icon
+                              icon="ion-android-close"
+                              size="30px"
+                              fixed-width="false"
+                              ng-click="habitManager.addPremadeHabitToGroup(habitManager.groupInfo.id, h.id);">
+                            </ons-icon>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="vertical-left-new-line">
                     <div class="habit_group_description">
